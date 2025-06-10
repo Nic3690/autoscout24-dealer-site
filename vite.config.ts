@@ -50,5 +50,9 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'styled-components']
-  }
+  },
+  // FIXED: Aggiungi questa configurazione per supportare i tipi TypeScript
+  define: {
+    global: 'globalThis',
+  },
 })

@@ -7,7 +7,8 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
 import { useCars, useCarManagement } from '../hooks/useCars';
-import { CarFilters } from '../types/car/car';
+// FIXED: Use type-only import
+import type { CarFilters } from '../types/car/car';
 
 const CatalogHeader = styled.div`
   background: linear-gradient(135deg, ${({ theme }) => theme.colors.background.paper}, ${({ theme }) => theme.colors.background.grey});
@@ -304,21 +305,21 @@ const CatalogPage: React.FC = () => {
                 </NoResults>
               ) : (
                 <CarsGrid>
-                  {/* Per ora mostriamo card placeholder dato che non abbiamo dati reali */}
-                  {Array.from({ length: 6 }, (_, index) => (
-                    <CarCard key={index} hoverable>
+                  {/* FIXED: Mostra i dati reali dal mock service */}
+                  {searchResult.cars.map((car) => (
+                    <CarCard key={car.id} hoverable>
                       <CarImage>
                         <FaCar />
                       </CarImage>
-                      <CarTitle>Auto di Esempio #{index + 1}</CarTitle>
+                      <CarTitle>{car.make} {car.model}</CarTitle>
                       <CarInfo>
-                        <span>2020 • 45.000 km</span>
-                        <span>Diesel</span>
+                        <span>{car.year} • {car.mileage.toLocaleString()} km</span>
+                        <span>{car.fuelType}</span>
                       </CarInfo>
                       <CarInfo>
-                        <span>Automatico • 5 porte</span>
+                        <span>{car.transmission} • {car.doors} porte</span>
                       </CarInfo>
-                      <CarPrice>€ {(15000 + Math.random() * 20000).toLocaleString('it-IT', { maximumFractionDigits: 0 })}</CarPrice>
+                      <CarPrice>€ {car.price.toLocaleString('it-IT')}</CarPrice>
                     </CarCard>
                   ))}
                 </CarsGrid>

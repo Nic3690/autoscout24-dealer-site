@@ -20,9 +20,9 @@ const SediPage = () => <div style={{ padding: '2rem' }}>Le Nostre Sedi - Coming 
 const AcquistiPage = () => <div style={{ padding: '2rem' }}>Acquistiamo la Tua Auto - Coming Soon</div>;
 const ContactPage = () => <div style={{ padding: '2rem' }}>Contatti - Coming Soon</div>;
 
-// Styles
-import { GlobalStyles } from '@styles/GlobalStyles';
-import { theme } from '@styles/theme';
+// Styles - FIXED: Usa import relativi invece di path alias
+import { GlobalStyles } from './styles/GlobalStyles';
+import { theme } from './styles/theme';
 
 // Create a client for React Query
 const queryClient = new QueryClient({

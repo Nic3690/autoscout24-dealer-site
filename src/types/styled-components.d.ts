@@ -1,3 +1,4 @@
+// FIXED: Tipizzazioni per styled-components in file separato
 import 'styled-components';
 
 // Estende l'interfaccia DefaultTheme di styled-components

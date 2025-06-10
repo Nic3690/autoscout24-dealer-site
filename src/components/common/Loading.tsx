@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes, DefaultTheme } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface LoadingProps {
   type?: 'spinner' | 'skeleton' | 'dots' | 'pulse';
@@ -41,15 +41,15 @@ const shimmer = keyframes`
   }
 `;
 
-// Container principale
+// Container principale - FIXED: Semplifica le tipizzazioni
 const LoadingContainer = styled.div<{ $fullScreen?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: ${({ theme }: { theme: DefaultTheme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.md};
   
-  ${({ $fullScreen, theme }: { $fullScreen?: boolean; theme: DefaultTheme }) => $fullScreen && `
+  ${({ $fullScreen, theme }) => $fullScreen && `
     position: fixed;
     top: 0;
     left: 0;
@@ -59,15 +59,15 @@ const LoadingContainer = styled.div<{ $fullScreen?: boolean }>`
     z-index: ${theme.zIndex.modal};
   `}
   
-  ${({ $fullScreen, theme }: { $fullScreen?: boolean; theme: DefaultTheme }) => !$fullScreen && `
+  ${({ $fullScreen, theme }) => !$fullScreen && `
     padding: ${theme.spacing.xl};
   `}
 `;
 
-// Spinner
+// Spinner - FIXED: Semplifica le tipizzazioni
 const Spinner = styled.div<{ $size: LoadingProps['size'] }>`
-  border: 3px solid ${({ theme }: { theme: DefaultTheme }) => theme.colors.border};
-  border-top: 3px solid ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
+  border: 3px solid ${({ theme }) => theme.colors.border};
+  border-top: 3px solid ${({ theme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
   
@@ -90,7 +90,7 @@ const DotsContainer = styled.div`
 `;
 
 const Dot = styled.div<{ $size: LoadingProps['size']; $delay: number }>`
-  background-color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${bounce} 1.4s ease-in-out infinite both;
   animation-delay: ${({ $delay }) => $delay}s;
@@ -111,20 +111,20 @@ const Dot = styled.div<{ $size: LoadingProps['size']; $delay: number }>`
 const SkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }: { theme: DefaultTheme }) => theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.md};
   width: 100%;
 `;
 
 const SkeletonLine = styled.div<{ $width?: string; $height?: string }>`
   background: linear-gradient(
     90deg,
-    ${({ theme }: { theme: DefaultTheme }) => theme.colors.background.grey} 0%,
-    ${({ theme }: { theme: DefaultTheme }) => theme.colors.border} 50%,
-    ${({ theme }: { theme: DefaultTheme }) => theme.colors.background.grey} 100%
+    ${({ theme }) => theme.colors.background.grey} 0%,
+    ${({ theme }) => theme.colors.border} 50%,
+    ${({ theme }) => theme.colors.background.grey} 100%
   );
   background-size: 200px 100%;
   animation: ${shimmer} 1.5s ease-in-out infinite;
-  border-radius: ${({ theme }: { theme: DefaultTheme }) => theme.borderRadius.md};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   
   width: ${({ $width }) => $width || '100%'};
   height: ${({ $height }) => $height || '16px'};
@@ -132,7 +132,7 @@ const SkeletonLine = styled.div<{ $width?: string; $height?: string }>`
 
 // Pulse
 const PulseContainer = styled.div<{ $size: LoadingProps['size'] }>`
-  background-color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${pulse} 1.5s ease-in-out infinite;
   
@@ -151,7 +151,7 @@ const PulseContainer = styled.div<{ $size: LoadingProps['size'] }>`
 // Testo di caricamento
 const LoadingText = styled.p`
   margin: 0;
-  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.secondary};
   font-size: 0.9rem;
   text-align: center;
 `;

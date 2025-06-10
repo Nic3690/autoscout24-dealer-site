@@ -11,6 +11,11 @@ interface ButtonProps {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  // FIXED: Aggiungi props mancanti
+  style?: React.CSSProperties;
+  as?: any; // Permette di usare come Link o altri componenti
+  to?: string; // Per react-router Link
+  href?: string; // Per link esterni
 }
 
 const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
@@ -177,7 +182,12 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   onClick,
   type = 'button',
-  className
+  className,
+  style, // FIXED: Passa style
+  as, // FIXED: Passa as
+  to, // FIXED: Passa to per Link
+  href, // FIXED: Passa href per link esterni
+  ...restProps // FIXED: Passa tutte le altre props
 }) => {
   return (
     <StyledButton
@@ -189,6 +199,11 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       type={type}
       className={className}
+      style={style}
+      as={as}
+      to={to}
+      href={href}
+      {...restProps} // FIXED: Spread delle props rimanenti
     >
       <ButtonContent loading={loading}>
         {children}

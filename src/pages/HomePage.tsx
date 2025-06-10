@@ -7,6 +7,7 @@ import Container from '../components/layout/Container';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
+// FIXED: Import corretto dei hooks
 import { useCarStats, useFeaturedCars, useCarManagement } from '../hooks/useCars';
 
 const HeroSection = styled.section`

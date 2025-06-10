@@ -9,6 +9,8 @@ interface CardProps {
   clickable?: boolean;
   onClick?: () => void;
   className?: string;
+  // FIXED: Aggiungi style prop
+  style?: React.CSSProperties;
 }
 
 const getCardVariant = (variant: CardProps['variant'], theme: any) => {
@@ -93,7 +95,9 @@ const Card: React.FC<CardProps> = ({
   hoverable = false,
   clickable = false,
   onClick,
-  className
+  className,
+  style, // FIXED: Accetta style prop
+  ...restProps // FIXED: Passa tutte le altre props
 }) => {
   const handleClick = () => {
     if (clickable && onClick) {
@@ -119,6 +123,8 @@ const Card: React.FC<CardProps> = ({
       tabIndex={clickable ? 0 : undefined}
       role={clickable ? 'button' : undefined}
       className={className}
+      style={style} // FIXED: Passa style
+      {...restProps} // FIXED: Spread delle props rimanenti
     >
       {children}
     </StyledCard>
