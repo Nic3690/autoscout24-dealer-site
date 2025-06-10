@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { FaCar, FaTools, FaHandshake, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 import Container from '../components/layout/Container';
@@ -8,53 +8,7 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
 // FIXED: Import corretto dei hooks
-import { useCarStats, useFeaturedCars, useCarManagement } from '../hooks/useCars';
-
-const HeroSection = styled.section`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.dark}, ${({ theme }) => theme.colors.primary.main});
-  color: white;
-  padding: ${({ theme }) => theme.spacing.xxl} 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('/images/cars-background.jpg') center/cover;
-    opacity: 0.1;
-    z-index: 0;
-  }
-
-  * {
-    position: relative;
-    z-index: 1;
-  }
-`;
-
-const HeroTitle = styled.h1`
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  color: white;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 2rem;
-  }
-`;
-
-const HeroSubtitle = styled.p`
-  font-size: 1.2rem;
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-`;
+import { useCarStats, useCarManagement } from '../hooks/useCars';
 
 const ServicesSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
@@ -156,7 +110,6 @@ const SectionTitle = styled.h2`
 
 const HomePage: React.FC = () => {
   const { data: stats, isLoading: statsLoading } = useCarStats();
-  const { data: featuredCars, isLoading: featuredLoading } = useFeaturedCars();
   const { syncStatus } = useCarManagement();
 
   // Imposta il titolo della pagina manualmente senza Helmet
@@ -172,20 +125,8 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section */}
-      <HeroSection>
-        <Container>
-          <HeroTitle>Benvenuti in RD Group</HeroTitle>
-          <HeroSubtitle>
-            Il tuo concessionario di fiducia per auto usate a Pistoia. 
-            Qualità, affidabilità e trasparenza da oltre 10 anni.
-          </HeroSubtitle>
-          <Button size="lg" as={Link} to="/auto">
-            Scopri le Nostre Auto
-          </Button>
-        </Container>
-      </HeroSection>
-
+      {/* La Hero Section è ora integrata nell'Header */}
+      
       {/* Services Section */}
       <ServicesSection>
         <Container>
