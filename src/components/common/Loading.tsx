@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, DefaultTheme } from 'styled-components';
 
 interface LoadingProps {
   type?: 'spinner' | 'skeleton' | 'dots' | 'pulse';
@@ -42,37 +42,37 @@ const shimmer = keyframes`
 `;
 
 // Container principale
-const LoadingContainer = styled.div<{ fullScreen?: boolean }>`
+const LoadingContainer = styled.div<{ $fullScreen?: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }: { theme: DefaultTheme }) => theme.spacing.md};
   
-  ${({ fullScreen }) => fullScreen && `
+  ${({ $fullScreen, theme }: { $fullScreen?: boolean; theme: DefaultTheme }) => $fullScreen && `
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${({ theme }) => theme.colors.background.default}F0;
-    z-index: ${({ theme }) => theme.zIndex.modal};
+    background-color: ${theme.colors.background.default}F0;
+    z-index: ${theme.zIndex.modal};
   `}
   
-  ${({ fullScreen }) => !fullScreen && `
-    padding: ${({ theme }) => theme.spacing.xl};
+  ${({ $fullScreen, theme }: { $fullScreen?: boolean; theme: DefaultTheme }) => !$fullScreen && `
+    padding: ${theme.spacing.xl};
   `}
 `;
 
 // Spinner
-const Spinner = styled.div<{ size: LoadingProps['size'] }>`
-  border: 3px solid ${({ theme }) => theme.colors.border};
-  border-top: 3px solid ${({ theme }) => theme.colors.primary.main};
+const Spinner = styled.div<{ $size: LoadingProps['size'] }>`
+  border: 3px solid ${({ theme }: { theme: DefaultTheme }) => theme.colors.border};
+  border-top: 3px solid ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
   
-  ${({ size }) => {
-    switch (size) {
+  ${({ $size }) => {
+    switch ($size) {
       case 'sm':
         return `width: 24px; height: 24px;`;
       case 'lg':
@@ -89,14 +89,14 @@ const DotsContainer = styled.div`
   gap: 8px;
 `;
 
-const Dot = styled.div<{ size: LoadingProps['size']; delay: number }>`
-  background-color: ${({ theme }) => theme.colors.primary.main};
+const Dot = styled.div<{ $size: LoadingProps['size']; $delay: number }>`
+  background-color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${bounce} 1.4s ease-in-out infinite both;
-  animation-delay: ${({ delay }) => delay}s;
+  animation-delay: ${({ $delay }) => $delay}s;
   
-  ${({ size }) => {
-    switch (size) {
+  ${({ $size }) => {
+    switch ($size) {
       case 'sm':
         return `width: 8px; height: 8px;`;
       case 'lg':
@@ -111,33 +111,33 @@ const Dot = styled.div<{ size: LoadingProps['size']; delay: number }>`
 const SkeletonContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
+  gap: ${({ theme }: { theme: DefaultTheme }) => theme.spacing.md};
   width: 100%;
 `;
 
-const SkeletonLine = styled.div<{ width?: string; height?: string }>`
+const SkeletonLine = styled.div<{ $width?: string; $height?: string }>`
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.colors.background.grey} 0%,
-    ${({ theme }) => theme.colors.border} 50%,
-    ${({ theme }) => theme.colors.background.grey} 100%
+    ${({ theme }: { theme: DefaultTheme }) => theme.colors.background.grey} 0%,
+    ${({ theme }: { theme: DefaultTheme }) => theme.colors.border} 50%,
+    ${({ theme }: { theme: DefaultTheme }) => theme.colors.background.grey} 100%
   );
   background-size: 200px 100%;
   animation: ${shimmer} 1.5s ease-in-out infinite;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border-radius: ${({ theme }: { theme: DefaultTheme }) => theme.borderRadius.md};
   
-  width: ${({ width }) => width || '100%'};
-  height: ${({ height }) => height || '16px'};
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '16px'};
 `;
 
 // Pulse
-const PulseContainer = styled.div<{ size: LoadingProps['size'] }>`
-  background-color: ${({ theme }) => theme.colors.primary.main};
+const PulseContainer = styled.div<{ $size: LoadingProps['size'] }>`
+  background-color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.primary.main};
   border-radius: 50%;
   animation: ${pulse} 1.5s ease-in-out infinite;
   
-  ${({ size }) => {
-    switch (size) {
+  ${({ $size }) => {
+    switch ($size) {
       case 'sm':
         return `width: 24px; height: 24px;`;
       case 'lg':
@@ -151,7 +151,7 @@ const PulseContainer = styled.div<{ size: LoadingProps['size'] }>`
 // Testo di caricamento
 const LoadingText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }: { theme: DefaultTheme }) => theme.colors.text.secondary};
   font-size: 0.9rem;
   text-align: center;
 `;
@@ -166,37 +166,37 @@ const Loading: React.FC<LoadingProps> = ({
   const renderLoadingContent = () => {
     switch (type) {
       case 'spinner':
-        return <Spinner size={size} />;
+        return <Spinner $size={size} />;
       
       case 'dots':
         return (
           <DotsContainer>
-            <Dot size={size} delay={0} />
-            <Dot size={size} delay={0.2} />
-            <Dot size={size} delay={0.4} />
+            <Dot $size={size} $delay={0} />
+            <Dot $size={size} $delay={0.2} />
+            <Dot $size={size} $delay={0.4} />
           </DotsContainer>
         );
       
       case 'pulse':
-        return <PulseContainer size={size} />;
+        return <PulseContainer $size={size} />;
       
       case 'skeleton':
         return (
           <SkeletonContainer>
-            <SkeletonLine height="20px" width="80%" />
-            <SkeletonLine height="16px" width="60%" />
-            <SkeletonLine height="16px" width="90%" />
-            <SkeletonLine height="16px" width="40%" />
+            <SkeletonLine $height="20px" $width="80%" />
+            <SkeletonLine $height="16px" $width="60%" />
+            <SkeletonLine $height="16px" $width="90%" />
+            <SkeletonLine $height="16px" $width="40%" />
           </SkeletonContainer>
         );
       
       default:
-        return <Spinner size={size} />;
+        return <Spinner $size={size} />;
     }
   };
 
   return (
-    <LoadingContainer fullScreen={fullScreen} className={className}>
+    <LoadingContainer $fullScreen={fullScreen} className={className}>
       {renderLoadingContent()}
       {text && <LoadingText>{text}</LoadingText>}
     </LoadingContainer>
@@ -206,25 +206,25 @@ const Loading: React.FC<LoadingProps> = ({
 // Componenti di utilità per skeleton specifici
 export const CarCardSkeleton: React.FC = () => (
   <SkeletonContainer>
-    <SkeletonLine height="200px" width="100%" />
-    <SkeletonLine height="24px" width="70%" />
-    <SkeletonLine height="20px" width="50%" />
-    <SkeletonLine height="16px" width="80%" />
-    <SkeletonLine height="16px" width="60%" />
+    <SkeletonLine $height="200px" $width="100%" />
+    <SkeletonLine $height="24px" $width="70%" />
+    <SkeletonLine $height="20px" $width="50%" />
+    <SkeletonLine $height="16px" $width="80%" />
+    <SkeletonLine $height="16px" $width="60%" />
   </SkeletonContainer>
 );
 
 export const CarDetailSkeleton: React.FC = () => (
   <SkeletonContainer>
-    <SkeletonLine height="400px" width="100%" />
-    <SkeletonLine height="32px" width="60%" />
-    <SkeletonLine height="24px" width="40%" />
+    <SkeletonLine $height="400px" $width="100%" />
+    <SkeletonLine $height="32px" $width="60%" />
+    <SkeletonLine $height="24px" $width="40%" />
     <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
-      <SkeletonLine height="80px" width="120px" />
-      <SkeletonLine height="80px" width="120px" />
-      <SkeletonLine height="80px" width="120px" />
+      <SkeletonLine $height="80px" $width="120px" />
+      <SkeletonLine $height="80px" $width="120px" />
+      <SkeletonLine $height="80px" $width="120px" />
     </div>
-    <SkeletonLine height="200px" width="100%" />
+    <SkeletonLine $height="200px" $width="100%" />
   </SkeletonContainer>
 );
 
