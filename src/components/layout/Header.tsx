@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
 const HeaderContainer = styled.header`
-  background-color: ${({ theme }) => theme.colors.background.paper};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
-  position: sticky;
+  background-color: ${({ theme }) => theme.colors.background.transparent};
+  position: absolute;
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.sticky};
   width: 100%;

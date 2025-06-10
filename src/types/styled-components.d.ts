@@ -21,6 +21,7 @@ declare module 'styled-components' {
         default: string;
         paper: string;
         grey: string;
+        transparent: string;
       };
       text: {
         primary: string;

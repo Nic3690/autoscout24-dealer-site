@@ -13,6 +13,7 @@ export const theme = {
 		contrastText: '#ffffff',
 	  },
 	  background: {
+		transparent: 'transparent',
 		default: '#fafafa',
 		paper: '#ffffff',
 		grey: '#f5f5f5',
