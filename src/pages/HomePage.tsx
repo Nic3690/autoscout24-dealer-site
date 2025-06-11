@@ -7,7 +7,6 @@ import Container from '../components/layout/Container';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
-// FIXED: Import corretto dei hooks
 import { useCarStats, useCarManagement } from '../hooks/useCars';
 
 const ServicesSection = styled.section`
@@ -49,7 +48,7 @@ const ServiceDescription = styled.p`
 
 const StatsSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.background.paper}, ${({ theme }) => theme.colors.background.grey});
+  background: transparent;
 `;
 
 const StatsGrid = styled.div`

@@ -7,14 +7,14 @@ export const theme = {
 		contrastText: '#ffffff',
 	  },
 	  secondary: {
-		main: '#dc004e',
+		main: '#cb1618',
 		light: '#f50057',
 		dark: '#c51162',
 		contrastText: '#ffffff',
 	  },
 	  background: {
 		transparent: 'transparent',
-		default: '#fafafa',
+		default: '#ffffff',
 		paper: '#ffffff',
 		grey: '#f5f5f5',
 	  },

@@ -26,10 +26,7 @@ const HeaderContainer = styled.header<{ showHero: boolean }>`
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.sticky};
   width: 100%;
-  background: ${({ showHero, theme }) => 
-    showHero 
-      ? `linear-gradient(135deg, ${theme.colors.text.primary} 0%, ${theme.colors.primary.dark} 100%)`
-      : 'transparent'
+  background: transparent
   };
 `;
 
@@ -40,8 +37,7 @@ const BackgroundOverlay = styled.div<{ showHero: boolean }>`
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/images/hero-car-background.jpg') center/cover;
-  opacity: 0.3;
+  background: url('src/assets/images/hero-car-background.jpg') center/cover;
   z-index: 1;
 `;
 
@@ -52,21 +48,6 @@ const GradientOverlay = styled.div<{ showHero: boolean }>`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    270deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.2) 100%
-  ),
-  linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  ),
-  linear-gradient(
-    0deg,
-    rgba(203, 22, 24, 0.2) 0%,
-    rgba(203, 22, 24, 0.2) 100%
-  );
   z-index: 2;
 `;
 
@@ -86,21 +67,22 @@ const LogoSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const LogoVector = styled.div`
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.main}, ${({ theme }) => theme.colors.secondary.main});
-  border-radius: 50%;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 3rem;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
 `;
 
 const CompanyDescription = styled.p`
@@ -122,7 +104,7 @@ const NavigationSection = styled.div`
   gap: 40px;
   padding: 0px 20px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 100vw;
 `;
 
 const NavLinksContainer = styled.div`
@@ -170,10 +152,10 @@ const NavLink = styled(Link)<{ isActive: boolean; showHero: boolean }>`
   }
 `;
 
-const Divider = styled.div`
+const NavigationDivider = styled.div`
   width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
   margin-bottom: -1px;
 `;
 
@@ -189,7 +171,7 @@ const HeroContentContainer = styled.div<{ showHero: boolean }>`
   justify-content: space-between;
   padding: 0 ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.xxl};
   z-index: 3;
-  max-width: 1200px;
+  max-width: 100vw;
   margin: 0 auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -235,7 +217,7 @@ const LuxuryDescription = styled.p`
   color: white;
   font-size: 1.25rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
-  line-height: 1.4;
+  line-height: 1.2;
   margin: 0;
 `;
 
@@ -252,6 +234,12 @@ const LuxuryButton = styled(Button)`
   &:hover {
     background: transparent;
     color: ${({ theme }) => theme.colors.primary.light};
+  }
+
+  svg {
+    font-size: 0.9rem;
+    margin-top: 4px;
+    margin-left: 8px;
   }
 `;
 
@@ -277,8 +265,8 @@ const CarDetails = styled.div`
 const CarHeader = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: ${({ theme }) => theme.spacing.sm};
+  align-items: flex-start;
+  gap: 4px;
 `;
 
 const CarMake = styled.h3`
@@ -295,7 +283,7 @@ const CarModel = styled.h4`
   font-family: ${({ theme }) => theme.typography.fontFamily};
   font-size: 1.5rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  margin: 0;
+  margin: -2px 0 ${({ theme }) => theme.spacing.sm} 0;
   text-align: right;
   line-height: 1.1;
   -webkit-box-orient: vertical;
@@ -303,13 +291,6 @@ const CarModel = styled.h4`
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const NavigationDivider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
-  margin-bottom: -1px;
 `;
 
 const CarPrice = styled.div`
@@ -323,7 +304,8 @@ const CarPrice = styled.div`
 const CarDetailsDivider = styled.hr`
   width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #ffffff;
+  opacity: 0.6;
   border: none;
   margin: 0;
 `;
@@ -342,21 +324,17 @@ const CarSpecs = styled.div`
 const SpecColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.xs};
   flex: 1;
 `;
 
 const SpecItem = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.xs};
   color: white;
-  font-size: 1.125rem;
-
-  svg {
-    color: ${({ theme }) => theme.colors.primary.light};
-    font-size: 1rem;
-  }
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 const DiscoverButton = styled(Button)`
@@ -397,21 +375,13 @@ const Header: React.FC<HeaderProps> = ({
       {showHero && <BackgroundOverlay showHero={showHero} />}
       {showHero && <GradientOverlay showHero={showHero} />}
       
-      {/* Navigation Bar - Figma Design */}
-      import { NavigationBar } from './types'; // Adjust the import based on your project structure
-
-      const NavigationBar: React.FC<NavigationBar> = ({ showHero, children }) => {
-        // Component implementation
-      };
-
-      // Ensure NavigationBarProps includes showHero
-      interface NavigationBarProps {
-        showHero: boolean;
-        children: React.ReactNode;
-      }
-        <LogoSection showHero={showHero}>
-          <LogoVector showHero={showHero}>RD</LogoVector>
-          <CompanyDescription showHero={showHero}>Rivenditore di auto a Pistoia, Italia</CompanyDescription>
+      {/* Navigation Bar */}
+      <NavigationBar>
+        <LogoSection>
+          <LogoVector>
+            <img src="/src/assets/images/logo.svg" alt="RD Group Logo" />
+          </LogoVector>
+          <CompanyDescription>Rivenditore di auto a Pistoia, Italia</CompanyDescription>
         </LogoSection>
         
         <NavigationSection>
@@ -495,26 +465,21 @@ const Header: React.FC<HeaderProps> = ({
               <CarSpecs>
                 <SpecColumn>
                   <SpecItem>
-                    <FaCog />
                     <span>{featuredCar.mileage.toLocaleString()}Km</span>
                   </SpecItem>
                   <SpecItem>
-                    <FaCog />
                     <span>{featuredCar.year}</span>
                   </SpecItem>
                 </SpecColumn>
 
                 <SpecColumn>
                   <SpecItem>
-                    <FaGasPump />
                     <span>{featuredCar.fuelType}</span>
                   </SpecItem>
                   <SpecItem>
-                    <FaCog />
                     <span>{featuredCar.transmission}</span>
                   </SpecItem>
                   <SpecItem>
-                    <FaBolt />
                     <span>{featuredCar.power}</span>
                   </SpecItem>
                 </SpecColumn>

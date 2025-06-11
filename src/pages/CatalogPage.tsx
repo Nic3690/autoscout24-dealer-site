@@ -11,7 +11,7 @@ import { useCars, useCarManagement } from '../hooks/useCars';
 import type { CarFilters } from '../types/car/car';
 
 const CatalogHeader = styled.div`
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.background.paper}, ${({ theme }) => theme.colors.background.grey});
+  background: transparent;
   padding: ${({ theme }) => theme.spacing.xxl} 0 ${({ theme }) => theme.spacing.xl} 0;
 `;
 
