@@ -6,6 +6,7 @@ import Container from '../layout/Container';
 import Button from '../common/Button';
 import type { CarFilters } from '../../types/car/car';
 import FeaturedHighlightSection from './FeaturedHighlightSection';
+import OtherHighlightCars from './OtherHighlightCars';
 
 const SearchSection = styled.section`
   background: white;
@@ -261,6 +262,7 @@ const SearchFiltersSection: React.FC<SearchFiltersProps> = ({ onSearch }) => {
           </ApplyFiltersButton>
 		  <Divider />
 		  <FeaturedHighlightSection />
+      <OtherHighlightCars />
         </SearchContainer>
       </Container>
     </SearchSection>

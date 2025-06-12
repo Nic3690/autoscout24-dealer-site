@@ -201,7 +201,7 @@ const CarTags = styled.div`
 const CarTag = styled.span`
   background: #000000;
   color: white;
-  padding: 2px 4px;
+  padding: 1px 4px;
   border-radius: 2px;
   font-size: 0.8rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
@@ -430,13 +430,13 @@ const FeaturedHighlightSection: React.FC = () => {
                 </CarSpecs>
 
                 <CarActions>
-				<ViewMoreButton 
-					variant="secondary"
-					onClick={(e) => {
-						e?.stopPropagation();
-						handleCarClick();
-					}}
-					>
+                <ViewMoreButton 
+                  variant="secondary"
+                  onClick={(e) => {
+                    e?.stopPropagation();
+                    handleCarClick();
+                  }}
+                  >
                     Scopri di più <FaArrowRight />
                   </ViewMoreButton>
                 </CarActions>

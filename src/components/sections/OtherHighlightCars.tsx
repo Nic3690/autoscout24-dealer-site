@@ -5,6 +5,8 @@ import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
 import Container from '../layout/Container';
 import Button from '../common/Button';
 import { useFeaturedCars } from '../../hooks/useCars';
+import Car_1 from '../../assets/images/Car_1.jpg';
+import Car_2 from '../../assets/images/Car_2.jpg';
 
 const FeaturedSection = styled.section`
   background: white;
@@ -12,7 +14,7 @@ const FeaturedSection = styled.section`
 `;
 
 const FeaturedGrid = styled.div`
-  padding: 80px 0;
+  padding: 0px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: ${({ theme }) => theme.spacing.xl};
@@ -25,14 +27,27 @@ const FeaturedGrid = styled.div`
 `;
 
 const PromotionalBox = styled.div`
-  background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-  border: 1px solid #f1aeb5;
+  background: rgba(203, 22, 24, 0.08);
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   padding: ${({ theme }) => theme.spacing.xxl};
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   min-height: 400px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px dashed #cb1618;
+    border-radius: ${({ theme }) => theme.borderRadius.lg};
+    pointer-events: none;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     min-height: auto;
@@ -40,30 +55,16 @@ const PromotionalBox = styled.div`
   }
 `;
 
-const PromoTitle = styled.h3`
-  color: #d32f2f;
-  font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
-
-const PromoText = styled.p`
-  color: #721c24;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  flex: 1;
-`;
-
 const PromoLink = styled(Link)`
-  color: #d32f2f;
+  color: ${({ theme }) => theme.colors.secondary.main};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
-  text-decoration: none;
+  text-decoration: underline;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: ${({ theme }) => theme.spacing.sm};
-  font-size: 0.95rem;
-  align-self: flex-start;
+  font-size: 1.4rem;
+  align-self: center;
 
   &:hover {
     text-decoration: underline;
@@ -90,7 +91,7 @@ const CarCard = styled.div`
 
 const CarImageContainer = styled.div`
   position: relative;
-  height: 300px;
+  height: 380px;
   background: #f5f5f5;
   overflow: hidden;
 
@@ -104,15 +105,16 @@ const CarImageContainer = styled.div`
 const LocationBadge = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.spacing.md};
-  right: ${({ theme }) => theme.spacing.md};
-  background: rgba(0, 0, 0, 0.8);
+  left: ${({ theme }) => theme.spacing.md};
+  background: #000000;
   color: white;
   padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  border-radius: 2px;
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   gap: 4px;
+  width: fit-content;
 
   svg {
     font-size: 0.7rem;
@@ -127,24 +129,32 @@ const CarHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
+const CarDivider = styled.hr`
+  width: 100%;
+  height: 0.8px;
+  background-color: #000000;
+  border: none;
+  margin: ${({ theme }) => theme.spacing.md} 0;
+`;
+
 const CarBrand = styled.div`
-  font-size: 0.9rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-size: 1.1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.text.secondary};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: 0px;;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 `;
 
 const CarModel = styled.h4`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.text.primary};
-  margin: 0 0 ${({ theme }) => theme.spacing.md} 0;
+  margin: 0 0 ${({ theme }) => theme.spacing.xs} 0;
 `;
 
 const CarPrice = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.secondary.main};
 `;
@@ -161,24 +171,33 @@ const CarTags = styled.div`
 `;
 
 const CarTag = styled.span`
-  background: #333;
+  background: #000000;
   color: white;
-  padding: 2px 8px;
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  padding: 1px 4px;
+  border-radius: 2px;
   font-size: 0.8rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   text-transform: uppercase;
 `;
 
 const CarDetails = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
   font-size: 1rem;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  line-height: 1.2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const CarDetail = styled.div`
   color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: 1.1;
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
   
   strong {
     color: ${({ theme }) => theme.colors.text.primary};
@@ -191,23 +210,35 @@ const CarActions = styled.div`
 `;
 
 const ViewMoreButton = styled(Button)`
-  background: ${({ theme }) => theme.colors.secondary.main};
+  align-self: flex-end;
+  background-color: ${({ theme }) => theme.colors.secondary.main};
+  background-image: none;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
-  font-size: 0.9rem;
+  font-size: 1.25rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   text-transform: none;
-  letter-spacing: normal;
-
+  
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary.dark};
+    background-color: ${({ theme }) => theme.colors.secondary.dark};
+    color: white;
+  }
+
+  &:focus, &:active {
+    color: white;
+  }
+
+  svg {
+    font-size: 0.8rem;
+    margin-left: 8px;
   }
 `;
 
 const FeaturedHighlightSection: React.FC = () => {
-  const { data: featuredResult, isLoading } = useFeaturedCars(2); // Cambiato da 1 a 2
+  const { data: featuredResult, isLoading } = useFeaturedCars(2);
   
-  // Get the first two featured cars or use mock data
-  const featuredCars = featuredResult?.cars?.slice(0, 2) || [
+  const featuredCars = [
     {
       id: 'featured-abarth',
       make: 'ABARTH',
@@ -220,7 +251,7 @@ const FeaturedHighlightSection: React.FC = () => {
       power: 118,
       images: [{
         id: '1',
-        url: '/placeholder-car.jpg',
+        url: Car_1,
         altText: 'ABARTH 595 Turismo',
         isPrimary: true,
         order: 0
@@ -273,7 +304,7 @@ const FeaturedHighlightSection: React.FC = () => {
       power: 140,
       images: [{
         id: '2',
-        url: '/placeholder-car.jpg',
+        url: Car_2,
         altText: 'BMW X3',
         isPrimary: true,
         order: 0
@@ -321,26 +352,11 @@ const FeaturedHighlightSection: React.FC = () => {
   };
 
   if (isLoading) {
-    return null; // Or a skeleton loader
+    return null;
   }
 
   return (
         <FeaturedGrid>
-          {/* Prima colonna - Promotional Box */}
-          <PromotionalBox>
-            <div>
-              <PromoTitle>In evidenza</PromoTitle>
-              <PromoText>
-                Questa auto è arrivata nelle ultime 24 ore, dai un'occhiata, 
-                potrebbe essere la tua occasione
-              </PromoText>
-            </div>
-            <PromoLink to="/auto?recent=true">
-              Gli ultimi arrivi <FaArrowRight />
-            </PromoLink>
-          </PromotionalBox>
-
-          {/* Seconda e terza colonna - Featured Cars */}
           {featuredCars.map((car, index) => (
             <CarCard key={car.id} onClick={() => handleCarClick(car.id)}>
               <CarImageContainer>
@@ -382,6 +398,8 @@ const FeaturedHighlightSection: React.FC = () => {
                       <CarTag key={featureIndex}>{feature}</CarTag>
                     ))}
                   </CarTags>
+                  
+                  <CarDivider />
 
                   <CarDetails>
                     <CarDetail>
@@ -412,16 +430,25 @@ const FeaturedHighlightSection: React.FC = () => {
                 </CarSpecs>
 
                 <CarActions>
-                  <ViewMoreButton onClick={(e) => {
+                <ViewMoreButton 
+                  variant="secondary"
+                  onClick={(e) => {
                     e?.stopPropagation();
                     handleCarClick(car.id);
-                  }}>
+                  }}
+                  >
                     Scopri di più <FaArrowRight />
                   </ViewMoreButton>
                 </CarActions>
               </CarInfo>
             </CarCard>
           ))}
+
+          <PromotionalBox>
+            <PromoLink to="/auto?recent=true">
+              Visita la pagina di ricerca <FaArrowRight />
+            </PromoLink>
+          </PromotionalBox>
         </FeaturedGrid>
   );
 };
