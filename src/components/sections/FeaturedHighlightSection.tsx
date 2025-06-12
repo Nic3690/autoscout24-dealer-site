@@ -5,6 +5,7 @@ import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
 import Container from '../layout/Container';
 import Button from '../common/Button';
 import { useFeaturedCars } from '../../hooks/useCars';
+import carImg from '../../assets/images/car.jpg';
 
 const FeaturedSection = styled.section`
   background: white;
@@ -13,26 +14,44 @@ const FeaturedSection = styled.section`
 
 const FeaturedGrid = styled.div`
   padding: 80px 0;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   gap: ${({ theme }) => theme.spacing.xl};
   align-items: stretch;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: ${({ theme }) => theme.spacing.lg};
   }
 `;
 
+const PromotionalContainer = styled.div`
+  width: 350px;
+  flex-shrink: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 100%;
+  }
+`;
+
+const FeaturedCarContainer = styled.div`
+  flex: 1;
+  min-width: 400px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    min-width: auto;
+    width: 100%;
+  }
+`;
+
 const PromotionalBox = styled.div`
-  background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-  border: 1px solid #f1aeb5;
+  background: rgba(203, 22, 24, 0.08);
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   padding: ${({ theme }) => theme.spacing.xxl};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 400px;
+  min-height: 540px;
+  margin-top: -20px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     min-height: auto;
@@ -48,21 +67,22 @@ const PromoTitle = styled.h3`
 `;
 
 const PromoText = styled.p`
-  color: #721c24;
-  font-size: 1rem;
+  color: #cb1618;
+  font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: ${({ theme }) => theme.spacing.xl};
   flex: 1;
 `;
 
 const PromoLink = styled(Link)`
-  color: #d32f2f;
+  color: #cb1618;
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.sm};
-  font-size: 0.95rem;
+  font-size: 1.2rem;
+  text-decoration: underline;
   align-self: flex-start;
 
   &:hover {
@@ -81,16 +101,23 @@ const CarCard = styled.div`
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  display: flex;
+  align-items: stretch;
 
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    flex-direction: column;
+  }
 `;
 
 const CarImageContainer = styled.div`
   position: relative;
-  height: 300px;
+  flex: 1;
+  min-height: 300px;
   background: #f5f5f5;
   overflow: hidden;
 
@@ -99,20 +126,25 @@ const CarImageContainer = styled.div`
     height: 100%;
     object-fit: cover;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    min-height: 200px;
+  }
 `;
 
 const LocationBadge = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.spacing.md};
   right: ${({ theme }) => theme.spacing.md};
-  background: rgba(0, 0, 0, 0.8);
+  background: #000000;
   color: white;
   padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  border-radius: 2px;
   font-size: 0.8rem;
   display: flex;
   align-items: center;
   gap: 4px;
+  width: fit-content;
 
   svg {
     font-size: 0.7rem;
@@ -120,7 +152,13 @@ const LocationBadge = styled.div`
 `;
 
 const CarInfo = styled.div`
-  padding: ${({ theme }) => theme.spacing.xl};
+  flex: 1;
+  padding: ${({ theme }) => theme.spacing.md};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 340px;
+  max-width: 340px;
 `;
 
 const CarHeader = styled.div`
@@ -128,23 +166,23 @@ const CarHeader = styled.div`
 `;
 
 const CarBrand = styled.div`
-  font-size: 0.9rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-size: 1.1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   color: ${({ theme }) => theme.colors.text.secondary};
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
+  margin-bottom: 0px;;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 `;
 
 const CarModel = styled.h4`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.text.primary};
-  margin: 0 0 ${({ theme }) => theme.spacing.md} 0;
+  margin: 0 0 ${({ theme }) => theme.spacing.xs} 0;
 `;
 
 const CarPrice = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.secondary.main};
 `;
@@ -161,24 +199,41 @@ const CarTags = styled.div`
 `;
 
 const CarTag = styled.span`
-  background: #333;
+  background: #000000;
   color: white;
-  padding: 2px 8px;
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  padding: 2px 4px;
+  border-radius: 2px;
   font-size: 0.8rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   text-transform: uppercase;
+`;
+
+const CarDivider = styled.hr`
+  width: 100%;
+  height: 0.8px;
+  background-color: #000000;
+  border: none;
+  margin: ${({ theme }) => theme.spacing.md} 0;
 `;
 
 const CarDetails = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
   font-size: 1rem;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  line-height: 1.2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.sm};
+  }
 `;
 
 const CarDetail = styled.div`
   color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: 1.1;
+  margin-bottom: ${({ theme }) => theme.spacing.xs};
   
   strong {
     color: ${({ theme }) => theme.colors.text.primary};
@@ -191,39 +246,51 @@ const CarActions = styled.div`
 `;
 
 const ViewMoreButton = styled(Button)`
-  background: ${({ theme }) => theme.colors.secondary.main};
+  align-self: flex-end;
+  background-color: ${({ theme }) => theme.colors.secondary.main};
+  background-image: none;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
-  font-size: 0.9rem;
+  font-size: 1.25rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   text-transform: none;
-  letter-spacing: normal;
-
+  
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary.dark};
+    background-color: ${({ theme }) => theme.colors.secondary.dark};
+    color: white;
+  }
+
+  &:focus, &:active {
+    color: white;
+  }
+
+  svg {
+    font-size: 0.8rem;
+    margin-left: 8px;
   }
 `;
 
 const FeaturedHighlightSection: React.FC = () => {
-  const { data: featuredResult, isLoading } = useFeaturedCars(1);
+  const { data: featuredResult, isLoading } = useFeaturedCars(1); // Tornato a 1 auto
   
-  // Get the first featured car or use mock data
-  const featuredCar = featuredResult?.cars?.[0] || {
-    id: 'featured-abarth',
-    make: 'ABARTH',
-    model: '595 Turismo 1.4',
-    price: 15400,
-    year: 2015,
-    mileage: 68000,
-    fuelType: 'petrol',
-    transmission: 'manual',
-    power: 118,
-    images: [{
-      id: '1',
-      url: '/placeholder-car.jpg',
-      altText: 'ABARTH 595 Turismo',
-      isPrimary: true,
-      order: 0
-    }],
+  const featuredCar = {
+	id: 'featured-abarth',
+	make: 'ABARTH',
+	model: '595 Turismo 1.4',
+	price: 15400,
+	year: 2015,
+	mileage: 68000,
+	fuelType: 'petrol',
+	transmission: 'manual',
+	power: 118,
+	images: [{
+	  id: '1',
+	  url: carImg,
+	  altText: 'ABARTH 595 Turismo',
+	  isPrimary: true,
+	  order: 0
+	}],
     location: {
       address: 'via Empoli 19/21',
       city: 'Firenze',
@@ -271,100 +338,111 @@ const FeaturedHighlightSection: React.FC = () => {
 
   return (
         <FeaturedGrid>
-          {/* Left side - Promotional Box */}
-          <PromotionalBox>
-            <div>
-              <PromoTitle>In evidenza</PromoTitle>
-              <PromoText>
-                Questa auto è arrivata nelle ultime 24 ore, dai un'occhiata, 
-                potrebbe essere la tua occasione
-              </PromoText>
-            </div>
-            <PromoLink to="/auto?recent=true">
-              Gli ultimi arrivi <FaArrowRight />
-            </PromoLink>
-          </PromotionalBox>
+          {/* Primo container - Promotional Box */}
+          <PromotionalContainer>
+            <PromotionalBox>
+              <div>
+                <PromoTitle>In evidenza</PromoTitle>
+                <PromoText>
+                  Questa auto è arrivata nelle ultime 24 ore, dai un'occhiata, 
+                  potrebbe essere la tua occasione
+                </PromoText>
+              </div>
+              <PromoLink to="/auto?recent=true">
+                Gli ultimi arrivi <FaArrowRight />
+              </PromoLink>
+            </PromotionalBox>
+          </PromotionalContainer>
 
-          {/* Right side - Featured Car */}
-          <CarCard onClick={handleCarClick}>
-            <CarImageContainer>
-              <LocationBadge>
-                <FaMapMarkerAlt />
-                {featuredCar.location.address} Wagen {featuredCar.location.city}
-              </LocationBadge>
-              {featuredCar.images?.[0] ? (
-                <img 
-                  src={featuredCar.images[0].url} 
-                  alt={featuredCar.images[0].altText}
-                />
-              ) : (
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  height: '100%',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  color: 'white',
-                  fontSize: '4rem',
-                  opacity: 0.8
-                }}>
-                  🚗
-                </div>
-              )}
-            </CarImageContainer>
+          {/* Secondo container - Featured Car (layout orizzontale) */}
+          <FeaturedCarContainer>
+            <CarCard onClick={handleCarClick}>
+              <CarImageContainer>
+                {featuredCar.images?.[0] ? (
+					<img 
+						src={featuredCar.images[0].url} 
+						alt={featuredCar.images[0].altText}
+					/>
+                ) : (
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    height: '100%',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
+                    fontSize: '4rem',
+                    opacity: 0.8
+                  }}>
+                    🚗
+                  </div>
+                )}
+              </CarImageContainer>
 
-            <CarInfo>
-              <CarHeader>
-                <CarBrand>{featuredCar.make}</CarBrand>
-                <CarModel>{featuredCar.model}</CarModel>
-                <CarPrice>{featuredCar.price.toLocaleString('it-IT')}€</CarPrice>
-              </CarHeader>
+              <CarInfo>
 
-              <CarSpecs>
-                <CarTags>
-                  {featuredCar.features.map((feature, index) => (
-                    <CarTag key={index}>{feature}</CarTag>
-                  ))}
-                </CarTags>
+				<LocationBadge style={{ position: 'relative', top: 'auto', right: 'auto', marginBottom: '16px' }}>
+					<FaMapMarkerAlt />
+					{featuredCar.location.address} Wagen {featuredCar.location.city}
+				</LocationBadge>
 
-                <CarDetails>
-                  <CarDetail>
-                    <strong>{featuredCar.mileage.toLocaleString()}Km</strong>
-                  </CarDetail>
-                  <CarDetail>
-                    <strong>
-                      {featuredCar.fuelType === 'petrol' ? 'Benzina' :
-                       featuredCar.fuelType === 'diesel' ? 'Diesel' :
-                       featuredCar.fuelType === 'electric' ? 'Elettrico' :
-                       featuredCar.fuelType === 'hybrid' ? 'Ibrido' : 'Benzina'}
-                    </strong>
-                  </CarDetail>
-                  <CarDetail>
-                    <strong>{featuredCar.year}</strong>
-                  </CarDetail>
-                  <CarDetail>
-                    <strong>
-                      {featuredCar.transmission === 'manual' ? 'Manuale' :
-                       featuredCar.transmission === 'automatic' ? 'Automatico' :
-                       featuredCar.transmission === 'semi_automatic' ? 'Semiautomatico' : 'Manuale'}
-                    </strong>
-                  </CarDetail>
-                  <CarDetail>
-                    <strong>{featuredCar.power}KW</strong>
-                  </CarDetail>
-                </CarDetails>
-              </CarSpecs>
+                <CarHeader>
+                  <CarBrand>{featuredCar.make}</CarBrand>
+                  <CarModel>{featuredCar.model}</CarModel>
+                  <CarPrice>{featuredCar.price.toLocaleString('it-IT')}€</CarPrice>
+                </CarHeader>
 
-              <CarActions>
-                <ViewMoreButton onClick={(e) => {
-                  e?.stopPropagation();
-                  handleCarClick();
-                }}>
-                  Scopri di più <FaArrowRight />
-                </ViewMoreButton>
-              </CarActions>
-            </CarInfo>
-          </CarCard>
+                <CarSpecs>
+                  <CarTags>
+                    {featuredCar.features.map((feature, index) => (
+                      <CarTag key={index}>{feature}</CarTag>
+                    ))}
+                  </CarTags>
+
+				  <CarDivider />
+
+                  <CarDetails>
+                    <CarDetail>
+                      <strong>{featuredCar.mileage.toLocaleString()}Km</strong>
+                    </CarDetail>
+                    <CarDetail>
+                      <strong>
+                        {featuredCar.fuelType === 'petrol' ? 'Benzina' :
+                         featuredCar.fuelType === 'diesel' ? 'Diesel' :
+                         featuredCar.fuelType === 'electric' ? 'Elettrico' :
+                         featuredCar.fuelType === 'hybrid' ? 'Ibrido' : 'Benzina'}
+                      </strong>
+                    </CarDetail>
+                    <CarDetail>
+                      <strong>{featuredCar.year}</strong>
+                    </CarDetail>
+                    <CarDetail>
+                      <strong>
+                        {featuredCar.transmission === 'manual' ? 'Manuale' :
+                         featuredCar.transmission === 'automatic' ? 'Automatico' :
+                         featuredCar.transmission === 'semi_automatic' ? 'Semiautomatico' : 'Manuale'}
+                      </strong>
+                    </CarDetail>
+                    <CarDetail>
+                      <strong>{featuredCar.power}KW</strong>
+                    </CarDetail>
+                  </CarDetails>
+                </CarSpecs>
+
+                <CarActions>
+				<ViewMoreButton 
+					variant="secondary"
+					onClick={(e) => {
+						e?.stopPropagation();
+						handleCarClick();
+					}}
+					>
+                    Scopri di più <FaArrowRight />
+                  </ViewMoreButton>
+                </CarActions>
+              </CarInfo>
+            </CarCard>
+          </FeaturedCarContainer>
         </FeaturedGrid>
   );
 };

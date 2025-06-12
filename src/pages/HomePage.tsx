@@ -8,7 +8,6 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
 import SearchFiltersSection from '../components/sections/SearchFiltersSection';
-import FeaturedHighlightSection from '../components/sections/FeaturedHighlightSection';
 import { useCarStats, useCarManagement } from '../hooks/useCars';
 
 const ServicesSection = styled.section`
@@ -270,9 +269,6 @@ const HomePage: React.FC = () => {
       
       {/* Search Filters Section - NUOVA SEZIONE che segue il design */}
       <SearchFiltersSection />
-
-      {/* Featured Highlight Section - NUOVA SEZIONE "In evidenza" */}
-      <FeaturedHighlightSection />
 
       {/* Services Section */}
       <ServicesSection>

@@ -342,13 +342,18 @@ const DiscoverButton = styled(Button)`
   align-self: flex-end;
   background-color: ${({ theme }) => theme.colors.secondary.main};
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
   font-size: 1.25rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   
   &:hover {
     background-color: ${({ theme }) => theme.colors.secondary.dark};
+  }
+
+  svg {
+    font-size: 0.8rem; // Dimensione desiderata
+    margin-left: 8px;
   }
 `;
 

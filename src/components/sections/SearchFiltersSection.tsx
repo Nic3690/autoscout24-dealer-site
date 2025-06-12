@@ -18,10 +18,10 @@ const SearchContainer = styled.div`
   background: white;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  padding: ${({ theme }) => theme.spacing.xxl};
+  padding: ${({ theme }) => theme.spacing.xl};
   margin: 0 auto;
   margin-top: -150px;
-  max-width: 90vw;
+  max-width: 94vw;
   position: relative;
   z-index: 300;
 `;
