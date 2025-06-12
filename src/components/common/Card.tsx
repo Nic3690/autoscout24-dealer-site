@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface CardProps {
   children: React.ReactNode;
   variant?: 'default' | 'elevated' | 'outlined' | 'flat';
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'; // FIXED: Aggiungi 'xl'
   hoverable?: boolean;
   clickable?: boolean;
   onClick?: () => void;
@@ -50,6 +50,8 @@ const getCardPadding = (padding: CardProps['padding'], theme: any) => {
       return theme.spacing.md;
     case 'lg':
       return theme.spacing.xl;
+    case 'xl':
+      return theme.spacing.xxl; // FIXED: Aggiungi supporto per xl
     default:
       return theme.spacing.lg;
   }

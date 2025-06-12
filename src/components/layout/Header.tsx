@@ -170,6 +170,7 @@ const HeroContentContainer = styled.div<{ showHero: boolean }>`
   align-items: flex-end;
   justify-content: space-between;
   padding: 0 ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.xxl};
+  padding-bottom: 150px;
   z-index: 3;
   max-width: 100vw;
   margin: 0 auto;

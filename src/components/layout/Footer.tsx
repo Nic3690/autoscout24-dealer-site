@@ -10,7 +10,7 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: 100vw;
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.md};
 

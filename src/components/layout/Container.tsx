@@ -17,11 +17,11 @@ const getMaxWidth = (size: ContainerProps['maxWidth']) => {
     case 'lg':
       return '1024px';
     case 'xl':
-      return '1200px';
+      return '100vw';
     case 'full':
       return '100%';
     default:
-      return '1200px';
+      return '100vw';
   }
 };
 

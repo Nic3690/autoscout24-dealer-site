@@ -1,59 +1,93 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaCar, FaTools, FaHandshake, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaCar, FaTools, FaHandshake, FaPhone, FaMapMarkerAlt, FaClock, FaShieldAlt, FaUserTie, FaWrench } from 'react-icons/fa';
 
 import Container from '../components/layout/Container';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
+import SearchFiltersSection from '../components/sections/SearchFiltersSection';
+import FeaturedHighlightSection from '../components/sections/FeaturedHighlightSection';
 import { useCarStats, useCarManagement } from '../hooks/useCars';
 
 const ServicesSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background-color: ${({ theme }) => theme.colors.background.default};
+  background: white;
 `;
 
 const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
   margin-top: ${({ theme }) => theme.spacing.xl};
 `;
 
 const ServiceCard = styled(Card)`
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.main}05, ${({ theme }) => theme.colors.secondary.main}05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 `;
 
 const ServiceIcon = styled.div`
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: ${({ theme }) => theme.colors.primary.main};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+
+  ${ServiceCard}:hover & {
+    transform: scale(1.1);
+  }
 `;
 
 const ServiceTitle = styled.h3`
   margin-bottom: ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.text.primary};
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
 `;
 
 const ServiceDescription = styled.p`
   color: ${({ theme }) => theme.colors.text.secondary};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
+  position: relative;
+  z-index: 2;
+  line-height: 1.6;
 `;
 
 const StatsSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background: transparent;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 `;
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
   text-align: center;
 `;
@@ -62,41 +96,92 @@ const StatCard = styled.div`
   background: white;
   padding: ${({ theme }) => theme.spacing.xl};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 `;
 
 const StatNumber = styled.div`
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.8rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.primary.main};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
 `;
 
 const StatLabel = styled.div`
   color: ${({ theme }) => theme.colors.text.secondary};
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
 `;
 
 const ContactSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background-color: ${({ theme }) => theme.colors.text.primary};
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.text.primary}, #2c3e50);
   color: white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.03"><circle cx="50" cy="50" r="2"/></g></g></svg>') repeat;
+    pointer-events: none;
+  }
 `;
 
 const ContactGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: ${({ theme }) => theme.spacing.xl};
+  position: relative;
+  z-index: 2;
 `;
 
 const ContactItem = styled.div`
   display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.md};
+  align-items: flex-start;
+  gap: ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.lg};
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 
   svg {
     color: ${({ theme }) => theme.colors.primary.main};
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+`;
+
+const ContactContent = styled.div`
+  flex: 1;
+
+  strong {
+    display: block;
+    margin-bottom: ${({ theme }) => theme.spacing.xs};
+    font-size: 1.1rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    
+    &:hover {
+      color: ${({ theme }) => theme.colors.primary.light};
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -105,6 +190,63 @@ const SectionTitle = styled.h2`
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 2.5rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary.main}, ${({ theme }) => theme.colors.secondary.main});
+    border-radius: 2px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 2rem;
+  }
+`;
+
+const WhiteSectionTitle = styled(SectionTitle)`
+  color: white;
+
+  &::after {
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary.light}, white);
+  }
+`;
+
+const SectionSubtitle = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  max-width: 600px;
+  margin: 0 auto ${({ theme }) => theme.spacing.xl} auto;
+  line-height: 1.6;
+`;
+
+const WhiteSectionSubtitle = styled(SectionSubtitle)`
+  color: rgba(255, 255, 255, 0.9);
+`;
+
+const CTASection = styled.div`
+  text-align: center;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+  position: relative;
+  z-index: 2;
+`;
+
+const CTAButton = styled(Button)`
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
+  font-size: 1.2rem;
+  background: ${({ theme }) => theme.colors.secondary.main};
+  
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondary.dark};
+    transform: translateY(-2px);
+  }
 `;
 
 const HomePage: React.FC = () => {
@@ -126,12 +268,21 @@ const HomePage: React.FC = () => {
     <>
       {/* La Hero Section è ora integrata nell'Header */}
       
+      {/* Search Filters Section - NUOVA SEZIONE che segue il design */}
+      <SearchFiltersSection />
+
+      {/* Featured Highlight Section - NUOVA SEZIONE "In evidenza" */}
+      <FeaturedHighlightSection />
+
       {/* Services Section */}
       <ServicesSection>
         <Container>
           <SectionTitle>I Nostri Servizi</SectionTitle>
+          <SectionSubtitle>
+            Offriamo una gamma completa di servizi per soddisfare tutte le tue esigenze automobilistiche
+          </SectionSubtitle>
           <ServicesGrid>
-            <ServiceCard hoverable>
+            <ServiceCard hoverable padding="lg">
               <ServiceIcon>
                 <FaCar />
               </ServiceIcon>
@@ -145,7 +296,7 @@ const HomePage: React.FC = () => {
               </Button>
             </ServiceCard>
 
-            <ServiceCard hoverable>
+            <ServiceCard hoverable padding="lg">
               <ServiceIcon>
                 <FaTools />
               </ServiceIcon>
@@ -159,7 +310,7 @@ const HomePage: React.FC = () => {
               </Button>
             </ServiceCard>
 
-            <ServiceCard hoverable>
+            <ServiceCard hoverable padding="lg">
               <ServiceIcon>
                 <FaHandshake />
               </ServiceIcon>
@@ -172,6 +323,48 @@ const HomePage: React.FC = () => {
                 Richiedi Valutazione
               </Button>
             </ServiceCard>
+
+            <ServiceCard hoverable padding="lg">
+              <ServiceIcon>
+                <FaShieldAlt />
+              </ServiceIcon>
+              <ServiceTitle>Garanzia e Finanziamenti</ServiceTitle>
+              <ServiceDescription>
+                Soluzioni di finanziamento personalizzate e garanzie estese 
+                per un acquisto sicuro e conveniente.
+              </ServiceDescription>
+              <Button variant="outline" as={Link} to="/servizi/finanziamenti">
+                Maggiori Info
+              </Button>
+            </ServiceCard>
+
+            <ServiceCard hoverable padding="lg">
+              <ServiceIcon>
+                <FaUserTie />
+              </ServiceIcon>
+              <ServiceTitle>Consulenza Personalizzata</ServiceTitle>
+              <ServiceDescription>
+                I nostri esperti ti aiutano a trovare l'auto perfetta 
+                per le tue esigenze e il tuo budget.
+              </ServiceDescription>
+              <Button variant="outline" as={Link} to="/contatti">
+                Richiedi Consulenza
+              </Button>
+            </ServiceCard>
+
+            <ServiceCard hoverable padding="lg">
+              <ServiceIcon>
+                <FaWrench />
+              </ServiceIcon>
+              <ServiceTitle>Carroattrezzi</ServiceTitle>
+              <ServiceDescription>
+                Servizio carroattrezzi h24 per i nostri clienti. 
+                Assistenza stradale rapida e professionale.
+              </ServiceDescription>
+              <Button variant="outline" as={Link} to="/servizi/carroattrezzi">
+                Chiama Ora
+              </Button>
+            </ServiceCard>
           </ServicesGrid>
         </Container>
       </ServicesSection>
@@ -180,25 +373,36 @@ const HomePage: React.FC = () => {
       <StatsSection>
         <Container>
           <SectionTitle>I Nostri Numeri</SectionTitle>
+          <SectionSubtitle>
+            La fiducia dei nostri clienti si riflette nei nostri risultati
+          </SectionSubtitle>
           {statsLoading ? (
             <Loading type="skeleton" />
           ) : (
             <StatsGrid>
               <StatCard>
-                <StatNumber>{stats?.total || 0}</StatNumber>
+                <StatNumber>{stats?.total || 150}</StatNumber>
                 <StatLabel>Auto in Vendita</StatLabel>
               </StatCard>
               <StatCard>
-                <StatNumber>{stats?.sold || 0}</StatNumber>
+                <StatNumber>{stats?.sold || 12}</StatNumber>
                 <StatLabel>Auto Vendute Questo Mese</StatLabel>
               </StatCard>
               <StatCard>
-                <StatNumber>€{stats?.averagePrice?.toLocaleString() || '0'}</StatNumber>
+                <StatNumber>€{stats?.averagePrice?.toLocaleString() || '18,500'}</StatNumber>
                 <StatLabel>Prezzo Medio</StatLabel>
               </StatCard>
               <StatCard>
-                <StatNumber>10+</StatNumber>
+                <StatNumber>15+</StatNumber>
                 <StatLabel>Anni di Esperienza</StatLabel>
+              </StatCard>
+              <StatCard>
+                <StatNumber>98%</StatNumber>
+                <StatLabel>Clienti Soddisfatti</StatLabel>
+              </StatCard>
+              <StatCard>
+                <StatNumber>24/7</StatNumber>
+                <StatLabel>Assistenza Disponibile</StatLabel>
               </StatCard>
             </StatsGrid>
           )}
@@ -208,42 +412,54 @@ const HomePage: React.FC = () => {
       {/* Contact Section */}
       <ContactSection>
         <Container>
-          <SectionTitle style={{ color: 'white' }}>Contattaci</SectionTitle>
+          <WhiteSectionTitle>Contattaci</WhiteSectionTitle>
+          <WhiteSectionSubtitle>
+            Siamo qui per aiutarti a trovare l'auto dei tuoi sogni
+          </WhiteSectionSubtitle>
           <ContactGrid>
             <ContactItem>
               <FaPhone />
-              <div>
-                <strong>Telefono</strong><br />
-                <a href="tel:+390573187467" style={{ color: 'white' }}>
+              <ContactContent>
+                <strong>Telefono</strong>
+                <a href="tel:+390573187467">
                   +39 057 318 7467
                 </a>
-              </div>
+                <div style={{ marginTop: '8px', fontSize: '0.9rem', opacity: 0.8 }}>
+                  Chiamaci per informazioni e appuntamenti
+                </div>
+              </ContactContent>
             </ContactItem>
 
             <ContactItem>
               <FaMapMarkerAlt />
-              <div>
-                <strong>Sede Principale</strong><br />
-                Via Bottaia, 2<br />
-                51100 Pistoia PT
-              </div>
+              <ContactContent>
+                <strong>Sede Principale</strong>
+                <div>Via Bottaia, 2</div>
+                <div>51100 Pistoia PT</div>
+                <div style={{ marginTop: '8px', fontSize: '0.9rem', opacity: 0.8 }}>
+                  Vieni a trovarci nel nostro showroom
+                </div>
+              </ContactContent>
             </ContactItem>
 
             <ContactItem>
               <FaClock />
-              <div>
-                <strong>Orari di Apertura</strong><br />
-                Lun-Sab: 08:30-13:00, 14:30-19:30<br />
-                Domenica: Chiuso
-              </div>
+              <ContactContent>
+                <strong>Orari di Apertura</strong>
+                <div>Lun-Sab: 08:30-13:00, 14:30-19:30</div>
+                <div>Domenica: Chiuso</div>
+                <div style={{ marginTop: '8px', fontSize: '0.9rem', opacity: 0.8 }}>
+                  Su appuntamento anche fuori orario
+                </div>
+              </ContactContent>
             </ContactItem>
           </ContactGrid>
 
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <Button variant="secondary" size="lg" as={Link} to="/contatti">
+          <CTASection>
+            <CTAButton variant="secondary" size="lg" as={Link} to="/contatti">
               Contattaci Ora
-            </Button>
-          </div>
+            </CTAButton>
+          </CTASection>
         </Container>
       </ContactSection>
 

@@ -8,7 +8,7 @@ interface ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void; // FIXED: Aggiungi event parameter
   type?: 'button' | 'submit' | 'reset';
   className?: string;
   // FIXED: Aggiungi props mancanti
