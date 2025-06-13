@@ -1,364 +1,187 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import LogoBlack from '../../assets/images/Logo_black.png'
 
 const FooterContainer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.text.primary};
-  color: ${({ theme }) => theme.colors.background.paper};
+  background-color: white;
+  color: black;
   margin-top: auto;
+  padding: 40px 0;
+`;
+
+const NavigationDivider = styled.div`
+  width: 100%;
+  height: 0.8px;
+  background-color: black;
+  margin-bottom: 20px;
 `;
 
 const FooterContent = styled.div`
-  max-width: 100vw;
+  max-width: 90vw;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.md};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    padding: ${({ theme }) => theme.spacing.xxl} ${({ theme }) => theme.spacing.xl};
-  }
-`;
-
-const FooterGrid = styled.div`
+  padding: 20px 80px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: ${({ theme }) => theme.spacing.xxl};
+  grid-template-columns: auto 1fr 1fr 1fr;
+  align-items: start;
+  gap: 200px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    grid-template-columns: 2fr 1.5fr 1.5fr;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
   }
 `;
 
-const FooterSection = styled.div`
+const LogoSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+
+const LogoCircle = styled.div`
+  width: 110px;
+  height: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+const ContactSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   h3 {
-    color: ${({ theme }) => theme.colors.background.paper};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    font-size: 1.1rem;
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-`;
-
-const ContactInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const ContactItem = styled.div`
-  display: flex;
-  align-items: flex-start;
-  gap: ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.background.paper};
-
-  svg {
-    color: ${({ theme }) => theme.colors.primary.main};
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  a {
-    color: ${({ theme }) => theme.colors.background.paper};
-    text-decoration: none;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.primary.light};
-      text-decoration: underline;
-    }
-  }
-`;
-
-const LocationsList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.lg};
-`;
-
-const LocationItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.sm};
-
-  h4 {
-    color: ${({ theme }) => theme.colors.primary.main};
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: 600;
+    color: black;
   }
 
   p {
     margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: ${({ theme }) => theme.colors.background.paper}CC;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: black;
   }
 
-  a {
-    color: ${({ theme }) => theme.colors.primary.light};
-    text-decoration: none;
-    font-size: 0.85rem;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  .phone {
+    font-weight: 400;
+    color: black;
   }
 `;
 
-const ServicesList = styled.div`
+const HoursSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.sm};
+  gap: 2px;
 
-  a {
-    color: ${({ theme }) => theme.colors.background.paper}CC;
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: ${({ theme }) => theme.spacing.xs} 0;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s ease;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.primary.light};
-      border-bottom-color: ${({ theme }) => theme.colors.primary.light};
-    }
-  }
-`;
-
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: ${({ theme }) => theme.spacing.lg};
-  margin-top: ${({ theme }) => theme.spacing.xxl};
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-`;
-
-const ServiceCard = styled.div`
-  background: ${({ theme }) => theme.colors.background.paper}10;
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.lg};
-  text-align: center;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.background.paper}20;
-    transform: translateY(-2px);
-  }
-
-  img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border-radius: ${({ theme }) => theme.borderRadius.md};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
-  }
-
-  h4 {
-    margin: 0;
-    font-size: 0.9rem;
+  h3 {
+    margin: 0 0 1px 0;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: ${({ theme }) => theme.colors.background.paper};
+    color: black;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: black;
   }
 `;
 
-const FooterBottom = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.background.paper}20;
-  margin-top: ${({ theme }) => theme.spacing.xxl};
-  padding-top: ${({ theme }) => theme.spacing.xl};
+const AddressSection = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg};
+  gap: 0px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: row;
-    justify-content: space-between;
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0 0 2px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: black;
   }
 `;
 
-const LogoFooter = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const LogoCircle = styled.div`
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary.main}, ${({ theme }) => theme.colors.secondary.main});
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 1rem;
-`;
-
-const Copyright = styled.p`
-  margin: 0;
-  font-size: 0.85rem;
-  color: ${({ theme }) => theme.colors.background.paper}80;
-  text-align: center;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    text-align: right;
+const AddressItem = styled.div`
+  font-size: 1.2rem;
+  line-height: 1.2;
+  
+  .location-name {
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+  
+  .address {
+    color: black;
   }
 `;
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-
-  const locations = [
-    {
-      name: "Sede Principale",
-      address: "Via Bottaia, 2, 51100 Pistoia PT, Italia",
-      mapLink: "https://maps.google.com/?q=Via+Bottaia,+2,+51100+Pistoia+PT,+Italia"
-    },
-    {
-      name: "Sede Secondaria", 
-      address: "Via Luigi Galvani, 2, 51100 Pistoia PT, Italia",
-      mapLink: "https://maps.google.com/?q=Via+Luigi+Galvani,+2,+51100+Pistoia+PT,+Italia"
-    },
-    {
-      name: "Sede Terza",
-      address: "Via Fiorentina, 331, 51100 Pistoia PT, Italia", 
-      mapLink: "https://maps.google.com/?q=Via+Fiorentina,+331,+51100+Pistoia+PT,+Italia"
-    }
-  ];
-
   return (
     <FooterContainer>
+      <NavigationDivider></NavigationDivider>
       <FooterContent>
-        <FooterGrid>
-          {/* Contatti */}
-          <FooterSection>
-            <h3>Contatti</h3>
-            <ContactInfo>
-              <ContactItem>
-                <FaPhone />
-                <div>
-                  <strong>Telefono</strong><br />
-                  <a href="tel:+390573187467">+39 057 318 7467</a>
-                </div>
-              </ContactItem>
-              
-              <ContactItem>
-                <FaEnvelope />
-                <div>
-                  <strong>E-Mail</strong><br />
-                  <a href="mailto:rdautosrlpistoia@gmail.com">
-                    rdautosrlpistoia@gmail.com
-                  </a>
-                </div>
-              </ContactItem>
-              
-              <ContactItem>
-                <FaClock />
-                <div>
-                  <strong>Orari</strong><br />
-                  Lunedì - Sabato: 08:30 – 13:00, 14:30 – 19:30<br />
-                  Domenica: Chiuso
-                </div>
-              </ContactItem>
-            </ContactInfo>
-          </FooterSection>
+        <LogoSection>
+          <LogoCircle>
+            <img src={LogoBlack} alt="RD Auto Logo" />
+          </LogoCircle>
+        </LogoSection>
 
-          {/* Sedi */}
-          <FooterSection>
-            <h3>Le Nostre Sedi</h3>
-            <LocationsList>
-              {locations.map((location, index) => (
-                <LocationItem key={index}>
-                  <h4>
-                    <FaMapMarkerAlt style={{ marginRight: '8px' }} />
-                    {location.name}
-                  </h4>
-                  <p>{location.address}</p>
-                  <a 
-                    href={location.mapLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Apri nelle mappe →
-                  </a>
-                </LocationItem>
-              ))}
-            </LocationsList>
-          </FooterSection>
+        <ContactSection>
+          <div>
+            <h3>Telefono</h3>
+            <p className="phone">+39 057 318 7467</p>
+          </div>
+          
+          <div>
+            <h3>E-Mail</h3>
+            <p>rdautosrlpistoia@gmail.com</p>
+          </div>
+        </ContactSection>
 
-          {/* Servizi */}
-          <FooterSection>
-            <h3>I Nostri Servizi</h3>
-            <ServicesList>
-              <Link to="/servizi/vendita-auto-usate">Vendita Auto Usate</Link>
-              <Link to="/servizi/vendita-luxury">Vendita Luxury</Link>
-              <Link to="/servizi/officina">Officina</Link>
-              <Link to="/servizi/acquisto-auto">Acquisto Auto</Link>
-              <Link to="/servizi/carroattrezzi">Carroattrezzi per i clienti</Link>
-              <Link to="/servizi/finanziamenti">Finanziamenti</Link>
-            </ServicesList>
-          </FooterSection>
-        </FooterGrid>
+        <HoursSection>
+          <h3>Lunedì - Sabato</h3>
+          <div>
+            <p>08:30 - 13:00</p>
+            <p>14:30 - 19:30</p>
+          </div>
+          <div>
+            <h3>Domenica</h3>
+            <p>Chiuso</p>
+          </div>
+        </HoursSection>
 
-        {/* Griglia Servizi con Immagini */}
-        <ServicesGrid>
-          <ServiceCard>
-            <img src="/images/vendita-auto-usate.jpg" alt="Vendita Auto Usate" />
-            <h4>Vendita Auto Usate</h4>
-          </ServiceCard>
+        <AddressSection>
+          <h3>Indirizzo</h3>
           
-          <ServiceCard>
-            <img src="/images/vendita-luxury.jpg" alt="Vendita Luxury" />
-            <h4>Vendita Luxury</h4>
-          </ServiceCard>
+          <AddressItem>
+            <div className="location-name">Via Bottaia, 2</div>
+            <div className="address">51100 Pistoia PT, Italia</div>
+          </AddressItem>
           
-          <ServiceCard>
-            <img src="/images/officina.jpg" alt="Officina" />
-            <h4>Officina</h4>
-          </ServiceCard>
+          <AddressItem>
+            <div className="location-name">Via Luigi Galvani, 2</div>
+            <div className="address">51100 Pistoia PT, Italia</div>
+          </AddressItem>
           
-          <ServiceCard>
-            <img src="/images/acquisto-auto.jpg" alt="Acquisto Auto" />
-            <h4>Acquisto Auto</h4>
-          </ServiceCard>
-          
-          <ServiceCard>
-            <img src="/images/carroattrezzi.jpg" alt="Carroattrezzi" />
-            <h4>Carroattrezzi per i Clienti</h4>
-          </ServiceCard>
-        </ServicesGrid>
-
-        {/* Footer Bottom */}
-        <FooterBottom>
-          <LogoFooter>
-            <LogoCircle>RD</LogoCircle>
-            <div>
-              <strong>RD Group</strong><br />
-              <small>Rivenditore di auto a Pistoia, Italia</small>
-            </div>
-          </LogoFooter>
-          
-          <Copyright>
-            © {currentYear} RD Group. Tutti i diritti riservati.<br />
-            P.IVA: 01234567890 - REA: PT-123456
-          </Copyright>
-        </FooterBottom>
+          <AddressItem>
+            <div className="location-name">Via Fiorentina, 331</div>
+            <div className="address">51100 Pistoia PT, Italia</div>
+          </AddressItem>
+        </AddressSection>
       </FooterContent>
     </FooterContainer>
   );

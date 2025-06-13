@@ -64,7 +64,7 @@ export const theme = {
 	  tooltip: 6,
 	},
 	typography: {
-	  fontFamily: "'Inter', 'Manrope', 'Helvetica', 'Arial', sans-serif",
+	  fontFamily: "'Manrope', sans-serif",
 	  fontSize: {
 		xs: '0.75rem',
 		sm: '0.875rem',
