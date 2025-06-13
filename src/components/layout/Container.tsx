@@ -70,7 +70,7 @@ const ContainerWrapper = styled.div<ContainerProps>`
 const Container: React.FC<ContainerProps> = ({ 
   children, 
   maxWidth = 'xl', 
-  padding = 'md',
+  padding = 'lg',
   className 
 }) => {
   return (

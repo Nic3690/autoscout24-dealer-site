@@ -9,18 +9,8 @@ import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
 import SearchFiltersSection from '../components/sections/SearchFiltersSection';
 import { useCarStats, useCarManagement } from '../hooks/useCars';
-
-const ServicesSection = styled.section`
-  padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background: white;
-`;
-
-const ServicesGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  margin-top: ${({ theme }) => theme.spacing.xl};
-`;
+import LocationsSection from '@/components/sections/ServicesMapsSection';
+import ServicesMapsSection from '@/components/sections/ServicesMapsSection';
 
 const ServiceCard = styled(Card)`
   text-align: center;
@@ -48,35 +38,6 @@ const ServiceCard = styled(Card)`
   &:hover::before {
     opacity: 1;
   }
-`;
-
-const ServiceIcon = styled.div`
-  font-size: 3.5rem;
-  color: ${({ theme }) => theme.colors.primary.main};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  position: relative;
-  z-index: 2;
-  transition: transform 0.3s ease;
-
-  ${ServiceCard}:hover & {
-    transform: scale(1.1);
-  }
-`;
-
-const ServiceTitle = styled.h3`
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 1.3rem;
-  position: relative;
-  z-index: 2;
-`;
-
-const ServiceDescription = styled.p`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  position: relative;
-  z-index: 2;
-  line-height: 1.6;
 `;
 
 const StatsSection = styled.section`
@@ -270,100 +231,7 @@ const HomePage: React.FC = () => {
       {/* Search Filters Section - NUOVA SEZIONE che segue il design */}
       <SearchFiltersSection />
 
-      {/* Services Section */}
-      <ServicesSection>
-        <Container>
-          <SectionTitle>I Nostri Servizi</SectionTitle>
-          <SectionSubtitle>
-            Offriamo una gamma completa di servizi per soddisfare tutte le tue esigenze automobilistiche
-          </SectionSubtitle>
-          <ServicesGrid>
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaCar />
-              </ServiceIcon>
-              <ServiceTitle>Vendita Auto Usate</ServiceTitle>
-              <ServiceDescription>
-                Ampio catalogo di auto usate selezionate e garantite. 
-                Ogni veicolo è controllato e certificato dai nostri esperti.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/auto">
-                Vedi Catalogo
-              </Button>
-            </ServiceCard>
-
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaTools />
-              </ServiceIcon>
-              <ServiceTitle>Officina Specializzata</ServiceTitle>
-              <ServiceDescription>
-                Servizio di assistenza e riparazione con tecnici qualificati. 
-                Manutenzione ordinaria e straordinaria per tutti i modelli.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/servizi/officina">
-                Scopri di Più
-              </Button>
-            </ServiceCard>
-
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaHandshake />
-              </ServiceIcon>
-              <ServiceTitle>Acquistiamo la Tua Auto</ServiceTitle>
-              <ServiceDescription>
-                Valutazione gratuita e immediata della tua auto. 
-                Offriamo il miglior prezzo di mercato con pagamento sicuro.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/acquistiamo">
-                Richiedi Valutazione
-              </Button>
-            </ServiceCard>
-
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaShieldAlt />
-              </ServiceIcon>
-              <ServiceTitle>Garanzia e Finanziamenti</ServiceTitle>
-              <ServiceDescription>
-                Soluzioni di finanziamento personalizzate e garanzie estese 
-                per un acquisto sicuro e conveniente.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/servizi/finanziamenti">
-                Maggiori Info
-              </Button>
-            </ServiceCard>
-
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaUserTie />
-              </ServiceIcon>
-              <ServiceTitle>Consulenza Personalizzata</ServiceTitle>
-              <ServiceDescription>
-                I nostri esperti ti aiutano a trovare l'auto perfetta 
-                per le tue esigenze e il tuo budget.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/contatti">
-                Richiedi Consulenza
-              </Button>
-            </ServiceCard>
-
-            <ServiceCard hoverable padding="lg">
-              <ServiceIcon>
-                <FaWrench />
-              </ServiceIcon>
-              <ServiceTitle>Carroattrezzi</ServiceTitle>
-              <ServiceDescription>
-                Servizio carroattrezzi h24 per i nostri clienti. 
-                Assistenza stradale rapida e professionale.
-              </ServiceDescription>
-              <Button variant="outline" as={Link} to="/servizi/carroattrezzi">
-                Chiama Ora
-              </Button>
-            </ServiceCard>
-          </ServicesGrid>
-        </Container>
-      </ServicesSection>
+      <ServicesMapsSection />
 
       {/* Stats Section */}
       <StatsSection>
