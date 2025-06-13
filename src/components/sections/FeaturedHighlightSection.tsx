@@ -6,6 +6,7 @@ import Container from '../layout/Container';
 import Button from '../common/Button';
 import { useFeaturedCars } from '../../hooks/useCars';
 import carImg from '../../assets/images/car.jpg';
+import ActionButton from '../common/ActionButton';
 
 const FeaturedSection = styled.section`
   background: white;
@@ -245,32 +246,6 @@ const CarActions = styled.div`
   justify-content: flex-end;
 `;
 
-const ViewMoreButton = styled(Button)`
-  align-self: flex-end;
-  background-color: ${({ theme }) => theme.colors.secondary.main};
-  background-image: none;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  color: white;
-  font-size: 1.25rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  text-transform: none;
-  
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary.dark};
-    color: white;
-  }
-
-  &:focus, &:active {
-    color: white;
-  }
-
-  svg {
-    font-size: 0.8rem;
-    margin-left: 8px;
-  }
-`;
-
 const FeaturedHighlightSection: React.FC = () => {
   const { data: featuredResult, isLoading } = useFeaturedCars(1); // Tornato a 1 auto
   
@@ -430,7 +405,7 @@ const FeaturedHighlightSection: React.FC = () => {
                 </CarSpecs>
 
                 <CarActions>
-                <ViewMoreButton 
+                <ActionButton 
                   variant="secondary"
                   onClick={(e) => {
                     e?.stopPropagation();
@@ -438,7 +413,7 @@ const FeaturedHighlightSection: React.FC = () => {
                   }}
                   >
                     Scopri di più <FaArrowRight />
-                  </ViewMoreButton>
+                  </ActionButton>
                 </CarActions>
               </CarInfo>
             </CarCard>

@@ -203,29 +203,4 @@ const Loading: React.FC<LoadingProps> = ({
   );
 };
 
-// Componenti di utilità per skeleton specifici
-export const CarCardSkeleton: React.FC = () => (
-  <SkeletonContainer>
-    <SkeletonLine $height="200px" $width="100%" />
-    <SkeletonLine $height="24px" $width="70%" />
-    <SkeletonLine $height="20px" $width="50%" />
-    <SkeletonLine $height="16px" $width="80%" />
-    <SkeletonLine $height="16px" $width="60%" />
-  </SkeletonContainer>
-);
-
-export const CarDetailSkeleton: React.FC = () => (
-  <SkeletonContainer>
-    <SkeletonLine $height="400px" $width="100%" />
-    <SkeletonLine $height="32px" $width="60%" />
-    <SkeletonLine $height="24px" $width="40%" />
-    <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
-      <SkeletonLine $height="80px" $width="120px" />
-      <SkeletonLine $height="80px" $width="120px" />
-      <SkeletonLine $height="80px" $width="120px" />
-    </div>
-    <SkeletonLine $height="200px" $width="100%" />
-  </SkeletonContainer>
-);
-
 export default Loading;
