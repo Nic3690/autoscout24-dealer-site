@@ -8,9 +8,10 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Loading from '../components/common/Loading';
 import SearchFiltersSection from '../components/sections/SearchFiltersSection';
-import { useCarStats, useCarManagement } from '../hooks/useCars';
-import LocationsSection from '@/components/sections/ServicesMapsSection';
-import ServicesMapsSection from '@/components/sections/ServicesMapsSection';
+import ServicesMapsSection from '../components/sections/ServicesMapsSection';
+import OurServices from '../components/sections/Services';
+import { useCarManagement } from '../hooks/useCars';
+import WhoWeAre from '@/components/sections/WhoWeAre';
 
 const ServiceCard = styled(Card)`
   text-align: center;
@@ -38,43 +39,6 @@ const ServiceCard = styled(Card)`
   &:hover::before {
     opacity: 1;
   }
-`;
-
-const StatsSection = styled.section`
-  padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-`;
-
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  text-align: center;
-`;
-
-const StatCard = styled.div`
-  background: white;
-  padding: ${({ theme }) => theme.spacing.xl};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  box-shadow: ${({ theme }) => theme.shadows.md};
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-  }
-`;
-
-const StatNumber = styled.div`
-  font-size: 2.8rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  color: ${({ theme }) => theme.colors.primary.main};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-`;
-
-const StatLabel = styled.div`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  font-size: 1rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
 `;
 
 const ContactSection = styled.section`
@@ -210,7 +174,6 @@ const CTAButton = styled(Button)`
 `;
 
 const HomePage: React.FC = () => {
-  const { data: stats, isLoading: statsLoading } = useCarStats();
   const { syncStatus } = useCarManagement();
 
   // Imposta il titolo della pagina manualmente senza Helmet
@@ -233,45 +196,10 @@ const HomePage: React.FC = () => {
 
       <ServicesMapsSection />
 
-      {/* Stats Section */}
-      <StatsSection>
-        <Container>
-          <SectionTitle>I Nostri Numeri</SectionTitle>
-          <SectionSubtitle>
-            La fiducia dei nostri clienti si riflette nei nostri risultati
-          </SectionSubtitle>
-          {statsLoading ? (
-            <Loading type="skeleton" />
-          ) : (
-            <StatsGrid>
-              <StatCard>
-                <StatNumber>{stats?.total || 150}</StatNumber>
-                <StatLabel>Auto in Vendita</StatLabel>
-              </StatCard>
-              <StatCard>
-                <StatNumber>{stats?.sold || 12}</StatNumber>
-                <StatLabel>Auto Vendute Questo Mese</StatLabel>
-              </StatCard>
-              <StatCard>
-                <StatNumber>€{stats?.averagePrice?.toLocaleString() || '18,500'}</StatNumber>
-                <StatLabel>Prezzo Medio</StatLabel>
-              </StatCard>
-              <StatCard>
-                <StatNumber>15+</StatNumber>
-                <StatLabel>Anni di Esperienza</StatLabel>
-              </StatCard>
-              <StatCard>
-                <StatNumber>98%</StatNumber>
-                <StatLabel>Clienti Soddisfatti</StatLabel>
-              </StatCard>
-              <StatCard>
-                <StatNumber>24/7</StatNumber>
-                <StatLabel>Assistenza Disponibile</StatLabel>
-              </StatCard>
-            </StatsGrid>
-          )}
-        </Container>
-      </StatsSection>
+      {/* Our Services Section - SOSTITUISCE la sezione Stats */}
+      <OurServices />
+
+      <WhoWeAre />
 
       {/* Contact Section */}
       <ContactSection>

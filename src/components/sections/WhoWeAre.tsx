@@ -1,0 +1,250 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { FaArrowRight, FaUser, FaCar } from 'react-icons/fa';
+import Container from '../layout/Container';
+import Button from '../common/Button';
+import Chi_Siamo from '../../assets/images/Chi_Siamo.jpg';
+import { Link } from 'react-router-dom';
+
+const WhoWeAreSection = styled.section`
+  padding: ${({ theme }) => theme.spacing.xxl} 35px;
+  background: white;
+`;
+
+const SectionTitle = styled.h2`
+  text-align: left;
+  margin-bottom: 15px;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+`;
+
+const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ theme }) => theme.spacing.xxl};
+  align-items: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing.xl};
+  }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    order: -1;
+    
+    img {
+      height: 300px;
+    }
+  }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing.lg};
+`;
+
+const MainText = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.6;
+  padding: 0 20px;
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0;
+`;
+
+const ContactContainer = styled.div`
+	flex: 1;
+	min-width: 400px;
+
+	@media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+	min-width: auto;
+	width: 100%;
+	}
+`;
+
+const ContactFormSection = styled.div`
+  padding: 0;
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.spacing.xl};
+  }
+`;
+
+const SubmitButton = styled(Button)`
+  background-color: #cb1618;
+  color: white;
+  border: none;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  font-size: 1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: end;
+  height: fit-content;
+  
+  &:hover {
+    background-color: #a51315;
+    transform: translateY(-1px);
+  }
+
+  &:focus, &:active {
+    color: white;
+  }
+
+  svg {
+    font-size: 0.9rem;
+    margin-left: ${({ theme }) => theme.spacing.sm};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    align-self: stretch;
+    justify-self: stretch;
+  }
+`;
+
+const PromotionalContainer = styled.div`
+  width: 350px;
+  flex-shrink: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 100%;
+  }
+`;
+
+const PromotionalBox = styled.div`
+  background: rgba(203, 22, 24, 0.08);
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  padding: ${({ theme }) => theme.spacing.xxl};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 540px;
+  margin-top: -20px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    min-height: auto;
+    padding: ${({ theme }) => theme.spacing.xl};
+  }
+`;
+
+const PromoTitle = styled.h3`
+  color: #d32f2f;
+  font-size: 1.2rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+`;
+
+const PromoText = styled.p`
+  color: #cb1618;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  flex: 1;
+`;
+
+interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  carModel: string;
+}
+
+const WhoWeAre: React.FC = () => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    firstName: '',
+    lastName: '',
+    carModel: ''
+  });
+
+  const handleInputChange = (field: keyof ContactFormData, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Qui implementeresti l'invio del form
+    alert('Richiesta inviata! Vi contatteremo presto.');
+    setFormData({ firstName: '', lastName: '', carModel: '' });
+  };
+
+  return (
+    <WhoWeAreSection>
+      <Container>
+        <SectionTitle>CHI SIAMO</SectionTitle>
+        
+        <ContentGrid>
+          <ImageContainer>
+            <img 
+              src={Chi_Siamo}
+              alt="Meccanico al lavoro nel nostro centro assistenza"
+              onError={(e) => {
+                // Fallback per l'immagine
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'flex';
+                target.style.alignItems = 'center';
+                target.style.justifyContent = 'center';
+                target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                target.style.color = 'white';
+                target.style.fontSize = '4rem';
+                target.innerHTML = '🔧';
+              }}
+            />
+          </ImageContainer>
+
+          <ContentContainer>
+            <MainText>
+			RD Group nasce dalla passione per le quattro ruote dei suoi titolari che hanno da sempre seguito il mondo dei motori e continuano adaggiornarsi sulle novità del settore, precedendo il
+			futuro delle auto. Il focus dell'azienda è rivolto al segmento luxury nel quale si riassume il meglio della tecnologia e del comfort e si hanno prestazioni di eccellenza. È facile innamorarsi
+			di questo tipo di vetture che consentono di stare al volante minimizzando la fatica e che godono di optional di eccezione sia per la guida sia per l'intrattenimento deipasseggeri.
+            </MainText>
+          </ContentContainer>
+        </ContentGrid>
+
+        <ContactFormSection>
+		  <PromotionalContainer>
+            <PromotionalBox>
+              <div>
+                <PromoTitle>Non trovi la tua prossima auto? Te la troviamo noi</PromoTitle>
+                <PromoText>
+					Compila comodamente il modulo a lato e ti informeremo al più presto
+                </PromoText>
+              </div>
+            </PromotionalBox>
+          </PromotionalContainer>
+
+          <ContactContainer>
+			  <SubmitButton>Richiedi</SubmitButton>
+          </ContactContainer>
+        </ContactFormSection>
+      </Container>
+    </WhoWeAreSection>
+  );
+};
+
+export default WhoWeAre;
