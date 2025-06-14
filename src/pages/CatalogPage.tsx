@@ -174,6 +174,7 @@ const CarsGrid = styled.div`
 const CarCard = styled.div`
   background: white;
   border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border: 1px solid #e0e0e0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

@@ -160,7 +160,6 @@ const NavigationDivider = styled.div`
   margin-bottom: -1px;
 `;
 
-// Hero Content Styles (invariate)
 const HeroContentContainer = styled.div<{ showHero: boolean }>`
   display: ${({ showHero }) => showHero ? 'flex' : 'none'};
   position: absolute;
