@@ -2,11 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Container from '../layout/Container';
-import Servizio_1 from '../../assets/images/Servizio_1.jpg';
-import Servizio_2 from '../../assets/images/Servizio_2.jpg';
-import Servizio_3 from '../../assets/images/Servizio_3.jpg';
-import Servizio_4 from '../../assets/images/Servizio_4.jpg';
-import Servizio_5 from '../../assets/images/Servizio_5.jpg';
 
 const ServicesSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 35px;
@@ -110,31 +105,31 @@ const OurServices: React.FC = () => {
     {
       title: "Vendita Auto Usate",
       description: "Ampio catalogo di auto usate selezionate e garantite",
-      image: Servizio_1,
+      image: '/Servizio_1.jpg',
       link: "/auto"
     },
     {
       title: "Vendita Luxury",
       description: "Auto di lusso e sportive per clienti esigenti",
-      image: Servizio_2, 
+      image: '/Servizio_2.jpg',
       link: "/luxury"
     },
     {
       title: "Officina",
       description: "Servizio completo di manutenzione e riparazione",
-      image: Servizio_3,
+      image: '/Servizio_3.jpg',
       link: "/servizi/officina"
     },
     {
       title: "Acquisto Auto",
       description: "Acquistiamo la tua auto al miglior prezzo",
-      image: Servizio_4,
+      image: '/Servizio_4.jpg',
       link: "/acquistiamo"
     },
     {
       title: "Carroattrezzi per i Clienti",
       description: "Servizio di soccorso stradale dedicato",
-      image: Servizio_5,
+      image: '/Servizio_5.jpg',
       link: "/servizi/carroattrezzi"
     }
   ];

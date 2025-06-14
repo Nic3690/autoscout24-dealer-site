@@ -278,7 +278,7 @@ const AcquistiPage: React.FC = () => {
       <Header 
         showHero={true} 
         featuredCar={featuredCarForContacts}
-        backgroundImage="src/assets/images/Car_Luxury.jpg"
+        backgroundImage="/Car_Luxury.jpg"
       />
 
       {/* Contact Content */}

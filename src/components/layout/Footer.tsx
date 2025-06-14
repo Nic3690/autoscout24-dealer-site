@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import LogoBlack from '../../assets/images/Logo_black.png'
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.background.default};
@@ -136,7 +135,7 @@ const Footer: React.FC = () => {
       <FooterContent>
         <LogoSection>
           <LogoCircle>
-            <img src={LogoBlack} alt="RD Auto Logo" />
+            <img src="/Logo_black.png" alt="RD Auto Logo" />
           </LogoCircle>
         </LogoSection>
 

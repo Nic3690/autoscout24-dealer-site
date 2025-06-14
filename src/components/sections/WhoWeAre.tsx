@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaArrowRight, FaUser, FaCar } from 'react-icons/fa';
 import Container from '../layout/Container';
-import Button from '../common/Button';
-import Chi_Siamo from '../../assets/images/Chi_Siamo.jpg';
 import ActionButton from '../common/ActionButton';
 
 const WhoWeAreSection = styled.section`
@@ -276,10 +274,9 @@ const WhoWeAre: React.FC = () => {
         <ContentGrid>
           <ImageContainer>
             <img 
-              src={Chi_Siamo}
+              src="/Chi_Siamo.jpg"
               alt="Meccanico al lavoro nel nostro centro assistenza"
               onError={(e) => {
-                // Fallback per l'immagine
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'flex';
                 target.style.alignItems = 'center';

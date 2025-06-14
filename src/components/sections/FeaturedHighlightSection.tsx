@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
 import { useFeaturedCars } from '../../hooks/useCars';
-import carImg from '../../assets/images/car.jpg';
 import ActionButton from '../common/ActionButton';
 
 const FeaturedGrid = styled.div`
@@ -254,7 +253,7 @@ const FeaturedHighlightSection: React.FC = () => {
 	power: 118,
 	images: [{
 	  id: '1',
-	  url: carImg,
+	  url: '/car.jpg',
 	  altText: 'ABARTH 595 Turismo',
 	  isPrimary: true,
 	  order: 0

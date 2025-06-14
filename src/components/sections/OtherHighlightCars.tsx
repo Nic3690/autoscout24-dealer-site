@@ -2,11 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
-import Container from '../layout/Container';
-import Button from '../common/Button';
 import { useFeaturedCars } from '../../hooks/useCars';
-import Car_1 from '../../assets/images/Car_1.jpg';
-import Car_2 from '../../assets/images/Car_2.jpg';
 import ActionButton from '../common/ActionButton';
 
 const FeaturedGrid = styled.div`
@@ -222,7 +218,7 @@ const FeaturedHighlightSection: React.FC = () => {
       power: 118,
       images: [{
         id: '1',
-        url: Car_1,
+        url: '/Car_1.jpg',
         altText: 'ABARTH 595 Turismo',
         isPrimary: true,
         order: 0
@@ -275,7 +271,7 @@ const FeaturedHighlightSection: React.FC = () => {
       power: 140,
       images: [{
         id: '2',
-        url: Car_2,
+        url: '/Car_2.jpg',
         altText: 'BMW X3',
         isPrimary: true,
         order: 0

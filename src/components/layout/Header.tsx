@@ -39,7 +39,7 @@ const BackgroundOverlay = styled.div<{ showHero: boolean; backgroundImage?: stri
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('${({ backgroundImage }) => backgroundImage || 'src/assets/images/hero-car-background.jpg'}') center/cover;
+  background: url('${({ backgroundImage }) => backgroundImage || '/hero-car-background.jpg'}') center/cover;
   z-index: 1;
 `;
 
@@ -411,7 +411,7 @@ const Header: React.FC<HeaderProps> = ({
       <NavigationBar showHero={showHero}>
         <LogoSection to="/">
           <LogoVector>
-            <img src="/src/assets/images/logo.svg" alt="RD Group Logo" />
+            <img src="/logo.svg" alt="RD Group Logo" />
           </LogoVector>
           <CompanyDescription>
             Rivenditore di auto a Pistoia, Italia
