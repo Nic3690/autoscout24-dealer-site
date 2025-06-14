@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaArrowRight, FaGasPump, FaCog, FaBolt } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import Button from '../common/Button';
 
 interface HeaderProps {
@@ -17,6 +17,7 @@ interface HeaderProps {
     image?: string;
   };
   showHero?: boolean;
+  backgroundImage?: string;
 }
 
 const HeaderContainer = styled.header<{ showHero: boolean }>`
@@ -31,14 +32,14 @@ const HeaderContainer = styled.header<{ showHero: boolean }>`
   background: ${({ showHero }) => showHero ? 'transparent' : '#000000'};
 `;
 
-const BackgroundOverlay = styled.div<{ showHero: boolean }>`
+const BackgroundOverlay = styled.div<{ showHero: boolean; backgroundImage?: string }>`
   display: ${({ showHero }) => showHero ? 'block' : 'none'};
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('src/assets/images/hero-car-background.jpg') center/cover;
+  background: url('${({ backgroundImage }) => backgroundImage || 'src/assets/images/hero-car-background.jpg'}') center/cover;
   z-index: 1;
 `;
 
@@ -359,6 +360,7 @@ const DiscoverButton = styled(Button)`
 
 const Header: React.FC<HeaderProps> = ({ 
   showHero = false,
+  backgroundImage,
   featuredCar = {
     make: "MERCEDES",
     model: "G63 AMG",
@@ -386,7 +388,7 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <HeaderContainer showHero={showHero}>
-      {showHero && <BackgroundOverlay showHero={showHero} />}
+      {showHero && <BackgroundOverlay showHero={showHero} backgroundImage={backgroundImage} />}
       {showHero && <GradientOverlay showHero={showHero} />}
       
       {/* Navigation Bar - SEMPRE VISIBILE */}

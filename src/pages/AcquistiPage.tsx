@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaArrowRight} from 'react-icons/fa';
 import { LuImagePlus } from "react-icons/lu";
@@ -9,14 +8,14 @@ import ActionButton from '../components/common/ActionButton';
 import Header from '../components/layout/Header';
 import LocationsSection from '@/components/sections/ServicesMapsSection';
 
-const ContactPageContainer = styled.div`
-  background: white;
+const AcquistiPageContainer = styled.div`
+  background: ${({ theme }) => theme.colors.background.default};
   min-height: 100vh;
 `;
 
 const ContactContent = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 0;
-  background: white;
+  background: ${({ theme }) => theme.colors.background.default};
   margin-top: 0;
 `;
 
@@ -217,7 +216,7 @@ const SectionMaps = styled.div`
   margin-bottom: 120px;
 `
 
-const ContactPage: React.FC = () => {
+const AcquistiPage: React.FC = () => {
   const [formData, setFormData] = useState({
     nome: '',
     cognome: '',
@@ -274,11 +273,12 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <ContactPageContainer>
+    <AcquistiPageContainer>
       {/* Hero Section - Identica alla Homepage utilizzando il componente Header */}
       <Header 
         showHero={true} 
         featuredCar={featuredCarForContacts}
+        backgroundImage="src/assets/images/Car_Luxury.jpg"
       />
 
       {/* Contact Content */}
@@ -426,8 +426,8 @@ const ContactPage: React.FC = () => {
       <SectionMaps>
         <LocationsSection></LocationsSection>
       </SectionMaps>
-    </ContactPageContainer>
+    </AcquistiPageContainer>
   );
 };
 
-export default ContactPage;
+export default AcquistiPage;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LogoBlack from '../../assets/images/Logo_black.png'
 
 const FooterContainer = styled.footer`
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.background.default};
   color: black;
   margin-top: auto;
   padding: 40px 0;

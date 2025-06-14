@@ -9,7 +9,7 @@ import ActionButton from '../common/ActionButton';
 
 const WhoWeAreSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xxl} 35px;
-  background: white;
+  background: ${({ theme }) => theme.colors.background.default};
 `;
 
 const SectionTitle = styled.h2`

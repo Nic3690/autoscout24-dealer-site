@@ -10,7 +10,7 @@ import Servizio_5 from '../../assets/images/Servizio_5.jpg';
 
 const ServicesSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 35px;
-  background: white;
+  background: ${({ theme }) => theme.colors.background.default};
 `;
 
 const SectionTitle = styled.h2`

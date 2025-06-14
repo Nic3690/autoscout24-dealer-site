@@ -9,11 +9,6 @@ import Car_1 from '../../assets/images/Car_1.jpg';
 import Car_2 from '../../assets/images/Car_2.jpg';
 import ActionButton from '../common/ActionButton';
 
-const FeaturedSection = styled.section`
-  background: white;
-  padding: ${({ theme }) => theme.spacing.xxl} 0;
-`;
-
 const FeaturedGrid = styled.div`
   padding: 0px 0;
   display: grid;

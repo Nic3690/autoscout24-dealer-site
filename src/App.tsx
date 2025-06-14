@@ -12,12 +12,10 @@ import ErrorFallback from './components/common/ErrorFallback';
 // Pages
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
-import ContactPage from './pages/ContactPage';
+import ContactPage from './pages/AcquistiPage';
 
 // Pages placeholder  
 const CarDetailPage = () => <div style={{ padding: '2rem' }}>Dettaglio Auto - Coming Soon</div>;
-const SediPage = () => <div style={{ padding: '2rem' }}>Le Nostre Sedi - Coming Soon</div>;
-const AcquistiPage = () => <div style={{ padding: '2rem' }}>Acquistiamo la Tua Auto - Coming Soon</div>;
 
 // Styles
 import { GlobalStyles } from './styles/GlobalStyles';
@@ -25,6 +23,7 @@ import { theme } from './styles/theme';
 
 // Hooks
 import { useFeaturedCars } from './hooks/useCars';
+import AcquistiPage from './pages/AcquistiPage';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -72,19 +71,17 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="app">
-      {/* Header dinamico: con hero solo sulla homepage */}
       {isHomePage ? (
         <Header showHero={true} featuredCar={heroCarData} />
-      ) : (
+      ) : location.pathname !== '/acquistiamo' ? (
         <Header showHero={false} />
-      )}
+      ) : null}
       
       <main className={`main-content ${!isHomePage ? 'with-normal-header' : ''}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auto" element={<CatalogPage />} />
           <Route path="/auto/:id" element={<CarDetailPage />} />
-          {/* Reindirizza luxury al catalogo con filtro luxury */}
           <Route path="/luxury" element={<LuxuryRedirect />} />
           <Route path="/sedi" element={<Navigate to="/#sedi" replace />} />
           <Route path="/acquistiamo" element={<AcquistiPage />} />

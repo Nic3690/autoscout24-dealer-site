@@ -6,11 +6,6 @@ import { useFeaturedCars } from '../../hooks/useCars';
 import carImg from '../../assets/images/car.jpg';
 import ActionButton from '../common/ActionButton';
 
-const FeaturedSection = styled.section`
-  background: white;
-  padding: ${({ theme }) => theme.spacing.xxl} 0;
-`;
-
 const FeaturedGrid = styled.div`
   padding: 80px 0;
   display: flex;

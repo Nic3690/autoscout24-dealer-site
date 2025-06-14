@@ -6,7 +6,7 @@ import ActionButton from '../common/ActionButton';
 
 const ServicesSection = styled.section`
   padding: ${({ theme }) => theme.spacing.xl} 35px;
-  background: white;
+  background: ${({ theme }) => theme.colors.background.default};
 `;
 
 const ServicesGrid = styled.div`
