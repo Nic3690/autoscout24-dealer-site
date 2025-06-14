@@ -94,7 +94,7 @@ const FormInput = styled.input`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   background: #F9F9F9;
   font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.light};
   color: ${({ theme }) => theme.colors.text.primary};
   transition: border-color 0.2s ease, background-color 0.2s ease;
 

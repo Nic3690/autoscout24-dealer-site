@@ -21,9 +21,9 @@ const SectionTitle = styled.h2`
   margin-bottom: 0;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: 2rem;

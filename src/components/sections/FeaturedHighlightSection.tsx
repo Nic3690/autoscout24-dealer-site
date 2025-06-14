@@ -60,7 +60,7 @@ const PromoTitle = styled.h3`
 `;
 
 const PromoText = styled.p`
-  color: #cb1618;
+  color: ${({ theme }) => theme.colors.primary.main};
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: ${({ theme }) => theme.spacing.xl};
@@ -68,7 +68,7 @@ const PromoText = styled.p`
 `;
 
 const PromoLink = styled(Link)`
-  color: #cb1618;
+  color: ${({ theme }) => theme.colors.primary.main};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-decoration: none;
   display: flex;
@@ -80,6 +80,7 @@ const PromoLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary.main};
   }
 
   svg {

@@ -10,7 +10,7 @@ export const theme = {
 		paper: '#ffffff',
 	  },
 	  text: {
-		primary: '#212121',
+		primary: '#656565',
 	  },
 	  error: '#f44336',
 	  warning: '#ff9800',

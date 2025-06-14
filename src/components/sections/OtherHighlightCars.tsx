@@ -64,6 +64,7 @@ const PromoLink = styled(Link)`
 
   &:hover {
     text-decoration: underline;
+    color: ${({ theme }) => theme.colors.primary.main};
   }
 
   svg {

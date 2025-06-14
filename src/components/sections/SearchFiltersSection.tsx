@@ -9,7 +9,7 @@ import FeaturedHighlightSection from './FeaturedHighlightSection';
 import OtherHighlightCars from './OtherHighlightCars';
 
 const SearchSection = styled.section`
-  background: white;
+  background: ${({ theme }) => theme.colors.background.default};
   padding: ${({ theme }) => theme.spacing.xxl} 0;
   position: relative;
   z-index: 10;

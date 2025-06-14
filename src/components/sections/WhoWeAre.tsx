@@ -4,7 +4,6 @@ import { FaArrowRight, FaUser, FaCar } from 'react-icons/fa';
 import Container from '../layout/Container';
 import Button from '../common/Button';
 import Chi_Siamo from '../../assets/images/Chi_Siamo.jpg';
-import { Link } from 'react-router-dom';
 import ActionButton from '../common/ActionButton';
 
 const WhoWeAreSection = styled.section`
@@ -17,9 +16,9 @@ const SectionTitle = styled.h2`
   margin-bottom: 15px;
   color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     text-align: center;
@@ -149,7 +148,7 @@ const FormInput = styled.input`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   background: #F9F9F9;
   font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.light};
   color: ${({ theme }) => theme.colors.text.primary};
   transition: border-color 0.2s ease, background-color 0.2s ease;
 

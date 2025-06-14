@@ -356,11 +356,12 @@ const DiscoverButton = styled(Button)`
   font-size: 1.25rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.colors.primary.main};
+    color: white;
     text-decoration: none;
-    outline: none;
-    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.primary.main}40;
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
   }
 
   svg {
