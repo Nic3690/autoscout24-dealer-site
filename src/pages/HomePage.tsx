@@ -1,51 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { FaCar, FaTools, FaHandshake, FaPhone, FaMapMarkerAlt, FaClock, FaShieldAlt, FaUserTie, FaWrench } from 'react-icons/fa';
-
-import Container from '../components/layout/Container';
-import Card from '../components/common/Card';
-import Button from '../components/common/Button';
-import Loading from '../components/common/Loading';
 import SearchFiltersSection from '../components/sections/SearchFiltersSection';
 import ServicesMapsSection from '../components/sections/ServicesMapsSection';
 import OurServices from '../components/sections/Services';
 import { useCarManagement } from '../hooks/useCars';
 import WhoWeAre from '@/components/sections/WhoWeAre';
-
-const SectionTitle = styled.h2`
-  text-align: center;
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 2.5rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary.main}, ${({ theme }) => theme.colors.secondary.main});
-    border-radius: 2px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 2rem;
-  }
-`;
-
-const SectionSubtitle = styled.p`
-  text-align: center;
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.colors.text.secondary};
-  max-width: 600px;
-  margin: 0 auto ${({ theme }) => theme.spacing.xl} auto;
-  line-height: 1.6;
-`;
 
 const HomePage: React.FC = () => {
   const { syncStatus } = useCarManagement();

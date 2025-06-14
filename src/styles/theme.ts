@@ -20,7 +20,7 @@ export const theme = {
 	  },
 	  text: {
 		primary: '#212121',
-		secondary: '#757575',
+		secondary: '#656565',
 	  },
 	  error: '#f44336',
 	  warning: '#ff9800',

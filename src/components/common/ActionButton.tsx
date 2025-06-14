@@ -10,8 +10,8 @@ const ActionButton = styled(Button)`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
-  font-size: 1.25rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  font-size: 1.1rem;
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-transform: none;
   
   &:hover {

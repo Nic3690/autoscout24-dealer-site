@@ -12,13 +12,13 @@ import ErrorFallback from './components/common/ErrorFallback';
 // Pages
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
+import ContactPage from './pages/ContactPage';
 
-// Pages placeholder
+// Pages placeholder  
 const CarDetailPage = () => <div style={{ padding: '2rem' }}>Dettaglio Auto - Coming Soon</div>;
 const LuxuryPage = () => <div style={{ padding: '2rem' }}>Sezione Luxury - Coming Soon</div>;
 const SediPage = () => <div style={{ padding: '2rem' }}>Le Nostre Sedi - Coming Soon</div>;
 const AcquistiPage = () => <div style={{ padding: '2rem' }}>Acquistiamo la Tua Auto - Coming Soon</div>;
-const ContactPage = () => <div style={{ padding: '2rem' }}>Contatti - Coming Soon</div>;
 
 // Styles
 import { GlobalStyles } from './styles/GlobalStyles';
@@ -27,17 +27,6 @@ import { createGlobalStyle } from 'styled-components';
 
 // Hooks
 import { useFeaturedCars } from './hooks/useCars';
-
-// Additional styles for main content spacing
-const AdditionalStyles = createGlobalStyle`
-  .main-content.with-normal-header {
-    padding-top: 180px; /* Height of compact navigation */
-    
-    @media (max-width: 768px) {
-      padding-top: 200px;
-    }
-  }
-`;
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -110,7 +99,6 @@ const App: React.FC = () => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
-          <AdditionalStyles />
           <Router>
             <AppContent />
           </Router>
