@@ -20,14 +20,15 @@ interface HeaderProps {
 }
 
 const HeaderContainer = styled.header<{ showHero: boolean }>`
-  height: ${({ showHero }) => showHero ? '100vh' : 'auto'};
-  overflow: hidden;
-  position: ${({ showHero }) => showHero ? 'relative' : 'absolute'};
+  height: ${({ showHero }) => showHero ? '100vh' : '280px'};
+  overflow: ${({ showHero }) => showHero ? 'hidden' : 'visible'};
+  position: ${({ showHero }) => showHero ? 'relative' : 'relative'};
   top: 0;
-  z-index: ${({ theme }) => theme.zIndex.sticky};
+  left: 0;
+  right: 0;
+  z-index: 1;
   width: 100%;
-  background: transparent
-  };
+  background: ${({ showHero }) => showHero ? 'transparent' : '#000000'};
 `;
 
 const BackgroundOverlay = styled.div<{ showHero: boolean }>`
@@ -51,8 +52,8 @@ const GradientOverlay = styled.div<{ showHero: boolean }>`
   z-index: 2;
 `;
 
-const NavigationBar = styled.div`
-  position: absolute;
+const NavigationBar = styled.div<{ showHero: boolean }>`
+  position: ${({ showHero }) => showHero ? 'absolute' : 'relative'};
   top: 0;
   z-index: ${({ theme }) => theme.zIndex.sticky};
   width: 100%;
@@ -125,9 +126,9 @@ const NavLinksContainer = styled.div`
 `;
 
 const NavLink = styled(Link)<{ isActive: boolean; showHero: boolean }>`
-  color: ${({ showHero, theme }) => showHero ? '#ffffff' : theme.colors.text.primary};
+  color: ${({ showHero, theme }) => showHero ? '#ffffff' : '#ffffff'};
   font-family: ${({ theme }) => theme.typography.fontFamily};
-  font-size: ${({ showHero }) => showHero ? '20px' : '16px'};
+  font-size: ${({ showHero }) => showHero ? '20px' : '20px'};
   font-weight: 700;
   letter-spacing: 0;
   line-height: normal;
@@ -144,11 +145,11 @@ const NavLink = styled(Link)<{ isActive: boolean; showHero: boolean }>`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: ${({ showHero }) => showHero ? '18px' : '14px'};
+    font-size: ${({ showHero }) => showHero ? '18px' : '18px'};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    font-size: ${({ showHero }) => showHero ? '16px' : '12px'};
+    font-size: ${({ showHero }) => showHero ? '16px' : '16px'};
   }
 `;
 
@@ -159,14 +160,14 @@ const NavigationDivider = styled.div`
   margin-bottom: -1px;
 `;
 
-// Hero Content Styles
+// Hero Content Styles (invariate)
 const HeroContentContainer = styled.div<{ showHero: boolean }>`
   display: ${({ showHero }) => showHero ? 'flex' : 'none'};
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(100% - 280px); /* Adjust for new header height */
+  height: calc(100% - 280px);
   align-items: flex-end;
   justify-content: space-between;
   padding: 0 ${({ theme }) => theme.spacing.xl} ${({ theme }) => theme.spacing.xxl};
@@ -352,7 +353,7 @@ const DiscoverButton = styled(Button)`
   }
 
   svg {
-    font-size: 0.8rem; // Dimensione desiderata
+    font-size: 0.8rem;
     margin-left: 8px;
   }
 `;
@@ -373,6 +374,11 @@ const Header: React.FC<HeaderProps> = ({
   const location = useLocation();
 
   const isActiveRoute = (path: string) => {
+    if (path === '/luxury') {
+      // Controlla se siamo su /auto con luxury=true
+      return location.pathname === '/auto' && 
+             new URLSearchParams(location.search).get('luxury') === 'true';
+    }
     return location.pathname === path;
   };
 
@@ -381,13 +387,15 @@ const Header: React.FC<HeaderProps> = ({
       {showHero && <BackgroundOverlay showHero={showHero} />}
       {showHero && <GradientOverlay showHero={showHero} />}
       
-      {/* Navigation Bar */}
-      <NavigationBar>
+      {/* Navigation Bar - SEMPRE VISIBILE */}
+      <NavigationBar showHero={showHero}>
         <LogoSection>
           <LogoVector>
             <img src="/src/assets/images/logo.svg" alt="RD Group Logo" />
           </LogoVector>
-          <CompanyDescription>Rivenditore di auto a Pistoia, Italia</CompanyDescription>
+          <CompanyDescription>
+            Rivenditore di auto a Pistoia, Italia
+          </CompanyDescription>
         </LogoSection>
         
         <NavigationSection>
@@ -401,7 +409,7 @@ const Header: React.FC<HeaderProps> = ({
             </NavLink>
             
             <NavLink 
-              to="/luxury" 
+              to="/auto?luxury=true" 
               isActive={isActiveRoute('/luxury')}
               showHero={showHero}
             >
@@ -437,7 +445,7 @@ const Header: React.FC<HeaderProps> = ({
         </NavigationSection>
       </NavigationBar>
 
-      {/* Hero Content */}
+      {/* Hero Content - SOLO HOMEPAGE */}
       {showHero && (
         <HeroContentContainer showHero={showHero}>
           <LeftSection>
@@ -451,7 +459,7 @@ const Header: React.FC<HeaderProps> = ({
             
             <LuxuryButton 
               as={Link} 
-              to="/luxury"
+              to="/auto?luxury=true"
               variant="ghost"
             >
               Vai alla sezione luxury <FaArrowRight />

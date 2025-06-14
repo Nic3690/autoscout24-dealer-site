@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
@@ -16,14 +16,12 @@ import ContactPage from './pages/ContactPage';
 
 // Pages placeholder  
 const CarDetailPage = () => <div style={{ padding: '2rem' }}>Dettaglio Auto - Coming Soon</div>;
-const LuxuryPage = () => <div style={{ padding: '2rem' }}>Sezione Luxury - Coming Soon</div>;
 const SediPage = () => <div style={{ padding: '2rem' }}>Le Nostre Sedi - Coming Soon</div>;
 const AcquistiPage = () => <div style={{ padding: '2rem' }}>Acquistiamo la Tua Auto - Coming Soon</div>;
 
 // Styles
 import { GlobalStyles } from './styles/GlobalStyles';
 import { theme } from './styles/theme';
-import { createGlobalStyle } from 'styled-components';
 
 // Hooks
 import { useFeaturedCars } from './hooks/useCars';
@@ -38,6 +36,11 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// Componente per reindirizzare luxury al catalogo con filtro
+const LuxuryRedirect: React.FC = () => {
+  return <Navigate to="/auto?luxury=true" replace />;
+};
 
 // Componente interno per gestire l'header con i dati
 const AppContent: React.FC = () => {
@@ -81,7 +84,8 @@ const AppContent: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/auto" element={<CatalogPage />} />
           <Route path="/auto/:id" element={<CarDetailPage />} />
-          <Route path="/luxury" element={<LuxuryPage />} />
+          {/* Reindirizza luxury al catalogo con filtro luxury */}
+          <Route path="/luxury" element={<LuxuryRedirect />} />
           <Route path="/sedi" element={<SediPage />} />
           <Route path="/acquistiamo" element={<AcquistiPage />} />
           <Route path="/contatti" element={<ContactPage />} />

@@ -126,14 +126,19 @@ const ApplyFiltersButton = styled(Button)`
   margin-left: auto;
   display: flex;
   justify-content: flex-end;
+  
+  &:hover {
+    background: transparent;
+    color: ${({ theme }) => theme.colors.secondary.dark};
+  }
 `;
 
 const Divider = styled.hr`
   width: 100%;
   height: 0.7px;
-  background-color: #000; /* FIXED: background-color invece di color */
+  background-color: #000;
   border: none;
-  margin: ${({ theme }) => theme.spacing.lg} 0 0 0; /* FIXED: Aggiungi margin-top */
+  margin: ${({ theme }) => theme.spacing.lg} 0 0 0;
 `;
 
 interface SearchFiltersProps {
@@ -169,7 +174,9 @@ const SearchFiltersSection: React.FC<SearchFiltersProps> = ({ onSearch }) => {
       Object.entries(filters).forEach(([key, value]) => {
         if (value !== undefined && value !== '') {
           if (Array.isArray(value)) {
-            searchParams.set(key, value.join(','));
+            if (value.length > 0) {
+              searchParams.set(key, value.join(','));
+            }
           } else {
             searchParams.set(key, value.toString());
           }

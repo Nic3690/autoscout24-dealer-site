@@ -14,9 +14,8 @@ export const theme = {
 	  },
 	  background: {
 		transparent: 'transparent',
-		default: '#ffffff',
+		default: '#f9f9f9',
 		paper: '#ffffff',
-		grey: '#f5f5f5',
 	  },
 	  text: {
 		primary: '#212121',

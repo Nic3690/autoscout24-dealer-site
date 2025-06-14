@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaArrowRight, FaMapMarkerAlt } from 'react-icons/fa';
-import Container from '../layout/Container';
-import Button from '../common/Button';
 import { useFeaturedCars } from '../../hooks/useCars';
 import carImg from '../../assets/images/car.jpg';
 import ActionButton from '../common/ActionButton';

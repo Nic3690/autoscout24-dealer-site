@@ -97,7 +97,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.background.grey};
+    background: ${({ theme }) => theme.colors.background.paper};
   }
 
   ::-webkit-scrollbar-thumb {
