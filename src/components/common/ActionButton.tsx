@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
-// Stesso stile identico dei tuoi 3 componenti
 const ActionButton = styled(Button)`
   align-self: flex-end;
-  background-color: ${({ theme }) => theme.colors.secondary.main};
-  background-image: none;
+  background: ${({ theme }) => theme.colors.primary.main} !important;
+  background-image: none !important;
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
@@ -15,11 +14,14 @@ const ActionButton = styled(Button)`
   text-transform: none;
   
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary.dark};
+    background: ${({ theme }) => theme.colors.primary.main} !important;
+    background-image: none !important;
     color: white;
   }
 
   &:focus, &:active {
+    background: ${({ theme }) => theme.colors.primary.main} !important;
+    background-image: none !important;
     color: white;
   }
 

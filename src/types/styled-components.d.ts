@@ -11,7 +11,7 @@ declare module 'styled-components' {
         dark: string;
         contrastText: string;
       };
-      secondary: {
+      primary: {
         main: string;
         light: string;
         dark: string;
@@ -24,7 +24,7 @@ declare module 'styled-components' {
       };
       text: {
         primary: string;
-        secondary: string;
+        primary: string;
       };
       error: string;
       warning: string;

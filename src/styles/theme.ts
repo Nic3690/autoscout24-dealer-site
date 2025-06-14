@@ -1,15 +1,7 @@
 export const theme = {
 	colors: {
 	  primary: {
-		main: '#1976d2',
-		light: '#42a5f5',
-		dark: '#1565c0',
-		contrastText: '#ffffff',
-	  },
-	  secondary: {
 		main: '#cb1618',
-		light: '#f50057',
-		dark: '#c51162',
 		contrastText: '#ffffff',
 	  },
 	  background: {
@@ -19,7 +11,6 @@ export const theme = {
 	  },
 	  text: {
 		primary: '#212121',
-		secondary: '#656565',
 	  },
 	  error: '#f44336',
 	  warning: '#ff9800',

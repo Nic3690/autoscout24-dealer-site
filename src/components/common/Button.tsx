@@ -3,15 +3,14 @@ import styled from 'styled-components';
 
 export interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
+  variant?: 'primary' | 'outline' | 'ghost' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
-  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void; // FIXED: Aggiungi event parameter
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
-  // FIXED: Aggiungi props mancanti
   style?: React.CSSProperties;
   as?: any; // Permette di usare come Link o altri componenti
   to?: string; // Per react-router Link
@@ -22,24 +21,12 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
   switch (variant) {
     case 'primary':
       return `
-        background: linear-gradient(135deg, ${theme.colors.primary.main}, ${theme.colors.primary.dark});
+        background: ${theme.colors.primary.main};
         color: ${theme.colors.primary.contrastText};
         border: none;
         
         &:hover:not(:disabled) {
-          background: linear-gradient(135deg, ${theme.colors.primary.dark}, ${theme.colors.primary.main});
-          transform: translateY(-1px);
-          box-shadow: ${theme.shadows.md};
-        }
-      `;
-    case 'secondary':
-      return `
-        background: linear-gradient(135deg, ${theme.colors.secondary.main}, ${theme.colors.secondary.dark});
-        color: ${theme.colors.secondary.contrastText};
-        border: none;
-        
-        &:hover:not(:disabled) {
-          background: linear-gradient(135deg, ${theme.colors.secondary.dark}, ${theme.colors.secondary.main});
+          background: ${theme.colors.primary.main};
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
         }
@@ -78,12 +65,12 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
       `;
     default:
       return `
-        background: linear-gradient(135deg, ${theme.colors.primary.main}, ${theme.colors.primary.dark});
+        background: ${theme.colors.primary.main};
         color: ${theme.colors.primary.contrastText};
         border: none;
         
         &:hover:not(:disabled) {
-          background: linear-gradient(135deg, ${theme.colors.primary.dark}, ${theme.colors.primary.main});
+          background: ${theme.colors.primary.main};
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
         }
@@ -183,11 +170,11 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   type = 'button',
   className,
-  style, // FIXED: Passa style
-  as, // FIXED: Passa as
-  to, // FIXED: Passa to per Link
-  href, // FIXED: Passa href per link esterni
-  ...restProps // FIXED: Passa tutte le altre props
+  style,
+  as,
+  to,
+  href,
+  ...restProps
 }) => {
   return (
     <StyledButton
@@ -203,7 +190,7 @@ const Button: React.FC<ButtonProps> = ({
       as={as}
       to={to}
       href={href}
-      {...restProps} // FIXED: Spread delle props rimanenti
+      {...restProps}
     >
       <ButtonContent loading={loading}>
         {children}

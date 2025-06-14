@@ -67,7 +67,7 @@ export const GlobalStyles = createGlobalStyle`
 
   p {
     margin-bottom: ${({ theme }) => theme.spacing.md};
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   a {
@@ -76,7 +76,7 @@ export const GlobalStyles = createGlobalStyle`
     transition: color 0.2s ease;
 
     &:hover {
-      color: ${({ theme }) => theme.colors.primary.dark};
+      color: ${({ theme }) => theme.colors.primary.main};
       text-decoration: underline;
     }
   }
@@ -106,7 +106,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.text.secondary};
+    background: ${({ theme }) => theme.colors.text.primary};
   }
 
   /* Focus styles */
@@ -117,7 +117,7 @@ export const GlobalStyles = createGlobalStyle`
 
   /* Selection styles */
   ::selection {
-    background-color: ${({ theme }) => theme.colors.primary.light};
+    background-color: ${({ theme }) => theme.colors.primary.main};
     color: ${({ theme }) => theme.colors.primary.contrastText};
   }
 

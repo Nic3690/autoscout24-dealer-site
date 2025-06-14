@@ -44,7 +44,7 @@ const SearchTitle = styled.h2`
   gap: ${({ theme }) => theme.spacing.sm};
 
   svg {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
 	font-size: 1rem;
   }
 `;
@@ -106,17 +106,17 @@ const FilterInput = styled.input`
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.primary.light};
+    border-color: ${({ theme }) => theme.colors.primary.main};
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
 const ApplyFiltersButton = styled(Button)`
   background: transparent;
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.md};
   font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
@@ -129,7 +129,7 @@ const ApplyFiltersButton = styled(Button)`
   
   &:hover {
     background: transparent;
-    color: ${({ theme }) => theme.colors.secondary.dark};
+    color: ${({ theme }) => theme.colors.primary.main};
   }
 `;
 

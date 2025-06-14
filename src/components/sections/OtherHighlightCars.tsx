@@ -52,7 +52,7 @@ const PromotionalBox = styled.div`
 `;
 
 const PromoLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   text-decoration: underline;
   display: flex;
@@ -136,7 +136,7 @@ const CarDivider = styled.hr`
 const CarBrand = styled.div`
   font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   margin-bottom: 0px;;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -152,7 +152,7 @@ const CarModel = styled.h4`
 const CarPrice = styled.div`
   font-size: 1.7rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
 `;
 
 const CarSpecs = styled.div`
@@ -191,7 +191,7 @@ const CarDetails = styled.div`
 `;
 
 const CarDetail = styled.div`
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   line-height: 1.1;
   margin-bottom: ${({ theme }) => theme.spacing.xs};
   
@@ -345,7 +345,7 @@ const FeaturedHighlightSection: React.FC = () => {
                     alignItems: 'center', 
                     justifyContent: 'center',
                     height: '100%',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'white',
                     color: 'white',
                     fontSize: '4rem',
                     opacity: 0.8
@@ -401,7 +401,7 @@ const FeaturedHighlightSection: React.FC = () => {
 
                 <CarActions>
                 <ActionButton 
-                  variant="secondary"
+                  variant="primary"
                   onClick={(e) => {
                     e?.stopPropagation();
                     handleCarClick(car.id);

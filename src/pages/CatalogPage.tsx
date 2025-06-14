@@ -32,7 +32,7 @@ const SearchTitle = styled.h2`
   gap: ${({ theme }) => theme.spacing.sm};
 
   svg {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
 	font-size: 1rem;
   }
 `;
@@ -128,11 +128,11 @@ const FilterInput = styled.input`
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.primary.light};
+    border-color: ${({ theme }) => theme.colors.primary.main};
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
@@ -232,7 +232,7 @@ const CarHeader = styled.div`
 const CarMake = styled.div`
   font-size: 1.1rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   margin-bottom: 0px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -249,7 +249,7 @@ const CarModel = styled.h3`
 const CarPrice = styled.div`
   font-size: 1.7rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
 `;
 
 const CarDivider = styled.hr`
@@ -279,7 +279,7 @@ const CarSpecsGrid = styled.div`
 `;
 
 const CarSpec = styled.div`
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   line-height: 1.1;
 
   strong {
@@ -312,7 +312,7 @@ const CarActions = styled.div`
 const NoResults = styled.div`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.xxl};
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   
   h3 {
     margin-bottom: ${({ theme }) => theme.spacing.md};
@@ -345,7 +345,7 @@ const PaginationContainer = styled.div`
 const PaginationButton = styled(Button)`
   min-width: 120px;
   border: none;
-  color: ${({theme}) => theme.colors.secondary.main};
+  color: ${({theme}) => theme.colors.primary.main};
   text-decoration: underline;
   text-transform: none;
   margin-top: -4px;
@@ -734,7 +734,7 @@ const CatalogPage: React.FC = () => {
 
                             <CarActions>
                               <ActionButton 
-                                variant="secondary"
+                                variant="primary"
                                 onClick={(e) => {
                                   e?.stopPropagation();
                                   handleCarClick(car.id);

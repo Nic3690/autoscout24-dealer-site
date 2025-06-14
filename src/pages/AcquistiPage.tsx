@@ -32,7 +32,7 @@ const ContactGrid = styled.div`
 `;
 
 const MainTitle = styled.h2`
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
   font-size: 1.8rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   margin: 50px 30px;
@@ -105,7 +105,7 @@ const FormInput = styled.input`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   }
 `;
@@ -129,7 +129,7 @@ const FormTextArea = styled.textarea`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
@@ -147,7 +147,7 @@ const GalleryTitle = styled.h3`
 `;
 
 const GallerySubtitle = styled.p`
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.2rem;
   margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
@@ -187,7 +187,7 @@ const ImageUpload = styled.div`
 
   span {
     font-size: 0.8rem;
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
     text-align: center;
   }
 

@@ -6,7 +6,7 @@ const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.background.default};
   color: black;
   margin-top: auto;
-  padding: 40px 0;
+  padding: 40px 0px;
 `;
 
 const NavigationDivider = styled.div`
@@ -19,11 +19,11 @@ const NavigationDivider = styled.div`
 const FooterContent = styled.div`
   max-width: 90vw;
   margin: 0 auto;
-  padding: 20px 80px;
+  padding: 20px 0px;
   display: grid;
-  grid-template-columns: auto 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: start;
-  gap: 200px;
+  gap: 100px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

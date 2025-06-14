@@ -1,3 +1,4 @@
+import { theme } from '@/styles/theme';
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -116,12 +117,7 @@ const SkeletonContainer = styled.div`
 `;
 
 const SkeletonLine = styled.div<{ $width?: string; $height?: string }>`
-  background: linear-gradient(
-    90deg,
-    ${({ theme }) => theme.colors.background.paper} 0%,
-    ${({ theme }) => theme.colors.border} 50%,
-    ${({ theme }) => theme.colors.background.paper} 100%
-  );
+background: ${theme.colors.primary.main};
   background-size: 200px 100%;
   animation: ${shimmer} 1.5s ease-in-out infinite;
   border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -151,7 +147,7 @@ const PulseContainer = styled.div<{ $size: LoadingProps['size'] }>`
 // Testo di caricamento
 const LoadingText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 0.9rem;
   text-align: center;
 `;

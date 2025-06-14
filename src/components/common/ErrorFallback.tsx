@@ -36,7 +36,7 @@ const ErrorTitle = styled.h1`
 `;
 
 const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.primary};
   margin-bottom: ${({ theme }) => theme.spacing.xl};
   line-height: 1.6;
 `;
@@ -47,7 +47,7 @@ const ErrorDetails = styled.details`
   
   summary {
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
     margin-bottom: ${({ theme }) => theme.spacing.md};
     
     &:hover {

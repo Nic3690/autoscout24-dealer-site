@@ -46,7 +46,7 @@ const LocationCard = styled(Card)`
 
 const MapContainer = styled.div`
   width: 100%;
-  height: 450px;
+  height: 45vh;
   position: relative;
   border-radius: ${({ theme }) => theme.borderRadius.lg} ${({ theme }) => theme.borderRadius.lg} 0 0;
   overflow: hidden;
@@ -65,10 +65,10 @@ const MapContainer = styled.div`
 `;
 
 const LocationInfo = styled.div`
-  padding: ${({ theme }) => theme.spacing.xl};
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.md};
   display: flex;
   flex-direction: row;
-  gap: ${({ theme }) => theme.spacing.lg};
+  gap: ${({ theme }) => theme.spacing.xs};
   align-items: start;
   justify-content: space-between;
 `;
@@ -135,7 +135,7 @@ const LocationsSection: React.FC = () => {
                   51100 Pistoia PT, Italia
                 </LocationAddress>
                 <ActionButton 
-                  variant="secondary"
+                  variant="primary"
                   href={location.googleMapsLink}
                   target="_blank"
                   rel="noopener noreferrer"

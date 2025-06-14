@@ -160,7 +160,7 @@ const FormInput = styled.input`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   }
 `;
@@ -186,7 +186,7 @@ const FormTextArea = styled.textarea`
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    color: ${({ theme }) => theme.colors.text.primary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.regular};
   }
 `;
@@ -285,7 +285,7 @@ const WhoWeAre: React.FC = () => {
                 target.style.display = 'flex';
                 target.style.alignItems = 'center';
                 target.style.justifyContent = 'center';
-                target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                target.style.background = 'white';
                 target.style.color = 'white';
                 target.style.fontSize = '4rem';
                 target.innerHTML = '🔧';

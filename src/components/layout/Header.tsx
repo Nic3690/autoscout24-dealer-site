@@ -65,11 +65,19 @@ const NavigationBar = styled.div<{ showHero: boolean }>`
   padding: 40px 10px;
 `;
 
-const LogoSection = styled.div`
+const LogoSection = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration: none;
+  }
 `;
 
 const LogoVector = styled.div`
@@ -235,7 +243,7 @@ const LuxuryButton = styled(Button)`
   
   &:hover {
     background: transparent;
-    color: ${({ theme }) => theme.colors.primary.light};
+    color: ${({ theme }) => theme.colors.primary.main};
   }
 
   svg {
@@ -296,7 +304,7 @@ const CarModel = styled.h4`
 `;
 
 const CarPrice = styled.div`
-  color: ${({ theme }) => theme.colors.secondary.main};
+  color: ${({ theme }) => theme.colors.primary.main};
   font-family: ${({ theme }) => theme.typography.fontFamily};
   font-size: 1.5rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
@@ -341,7 +349,7 @@ const SpecItem = styled.div`
 
 const DiscoverButton = styled(Button)`
   align-self: flex-end;
-  background-color: ${({ theme }) => theme.colors.secondary.main};
+  background-color: ${({ theme }) => theme.colors.primary.main};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: white;
@@ -349,7 +357,7 @@ const DiscoverButton = styled(Button)`
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary.dark};
+    background-color: ${({ theme }) => theme.colors.primary.main};
   }
 
   svg {
@@ -393,7 +401,7 @@ const Header: React.FC<HeaderProps> = ({
       
       {/* Navigation Bar - SEMPRE VISIBILE */}
       <NavigationBar showHero={showHero}>
-        <LogoSection>
+        <LogoSection to="/">
           <LogoVector>
             <img src="/src/assets/images/logo.svg" alt="RD Group Logo" />
           </LogoVector>
@@ -516,7 +524,7 @@ const Header: React.FC<HeaderProps> = ({
             <DiscoverButton 
               as={Link} 
               to={`/auto/featured-luxury`}
-              variant="secondary"
+              variant="primary"
             >
               Scopri di più <FaArrowRight />
             </DiscoverButton>
