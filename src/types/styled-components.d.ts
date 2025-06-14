@@ -1,20 +1,10 @@
-// FIXED: Tipizzazioni per styled-components in file separato
 import 'styled-components';
 
-// Estende l'interfaccia DefaultTheme di styled-components
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       primary: {
         main: string;
-        light: string;
-        dark: string;
-        contrastText: string;
-      };
-      primary: {
-        main: string;
-        light: string;
-        dark: string;
         contrastText: string;
       };
       background: {

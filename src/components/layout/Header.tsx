@@ -395,6 +395,10 @@ const Header: React.FC<HeaderProps> = ({
       return (location.pathname === '/' && location.hash === '#sedi') || 
              location.pathname === '/sedi';
     }
+    if (path === '/contatti') {
+      return (location.pathname === '/' && location.hash === '#contatti') || 
+             location.pathname === '/contatti';
+    }
     return location.pathname === path;
   };
 
@@ -458,9 +462,18 @@ const Header: React.FC<HeaderProps> = ({
             </NavLink>
             
             <NavLink 
-              to="/contatti" 
+              to="/#contatti" 
               isActive={isActiveRoute('/contatti')}
               showHero={showHero}
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  const contattiSection = document.getElementById('contatti');
+                  if (contattiSection) {
+                    contattiSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              }}
             >
               Contatti
             </NavLink>

@@ -292,7 +292,7 @@ const WhoWeAre: React.FC = () => {
             />
           </ImageContainer>
 
-          <ContentContainer>
+          <ContentContainer id="contatti">
             <MainText>
               RD Group nasce dalla passione per le quattro ruote dei suoi titolari che hanno da sempre seguito il mondo dei motori e continuano ad aggiornarsi sulle novità del settore, precedendo il
               futuro delle auto. Il focus dell'azienda è rivolto al segmento luxury nel quale si riassume il meglio della tecnologia e del comfort e si hanno prestazioni di eccellenza. È facile innamorarsi

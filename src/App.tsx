@@ -12,7 +12,7 @@ import ErrorFallback from './components/common/ErrorFallback';
 // Pages
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
-import ContactPage from './pages/AcquistiPage';
+import AcquistiPage from './pages/AcquistiPage';
 
 // Pages placeholder  
 const CarDetailPage = () => <div style={{ padding: '2rem' }}>Dettaglio Auto - Coming Soon</div>;
@@ -23,7 +23,6 @@ import { theme } from './styles/theme';
 
 // Hooks
 import { useFeaturedCars } from './hooks/useCars';
-import AcquistiPage from './pages/AcquistiPage';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -85,7 +84,7 @@ const AppContent: React.FC = () => {
           <Route path="/luxury" element={<LuxuryRedirect />} />
           <Route path="/sedi" element={<Navigate to="/#sedi" replace />} />
           <Route path="/acquistiamo" element={<AcquistiPage />} />
-          <Route path="/contatti" element={<ContactPage />} />
+          <Route path="/contatti" element={<Navigate to="/#contatti" replace />} />
           <Route path="*" element={<div style={{ padding: '2rem', textAlign: 'center' }}>Pagina non trovata</div>} />
         </Routes>
       </main>
