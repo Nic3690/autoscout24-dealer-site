@@ -374,9 +374,12 @@ const Header: React.FC<HeaderProps> = ({
 
   const isActiveRoute = (path: string) => {
     if (path === '/luxury') {
-      // Controlla se siamo su /auto con luxury=true
       return location.pathname === '/auto' && 
              new URLSearchParams(location.search).get('luxury') === 'true';
+    }
+    if (path === '/sedi') {
+      return (location.pathname === '/' && location.hash === '#sedi') || 
+             location.pathname === '/sedi';
     }
     return location.pathname === path;
   };
@@ -416,9 +419,18 @@ const Header: React.FC<HeaderProps> = ({
             </NavLink>
             
             <NavLink 
-              to="/sedi" 
+              to="/#sedi" 
               isActive={isActiveRoute('/sedi')}
               showHero={showHero}
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  const sediSection = document.getElementById('sedi');
+                  if (sediSection) {
+                    sediSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              }}
             >
               Sedi
             </NavLink>

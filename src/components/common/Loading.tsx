@@ -118,9 +118,9 @@ const SkeletonContainer = styled.div`
 const SkeletonLine = styled.div<{ $width?: string; $height?: string }>`
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.colors.background.grey} 0%,
+    ${({ theme }) => theme.colors.background.paper} 0%,
     ${({ theme }) => theme.colors.border} 50%,
-    ${({ theme }) => theme.colors.background.grey} 100%
+    ${({ theme }) => theme.colors.background.paper} 100%
   );
   background-size: 200px 100%;
   animation: ${shimmer} 1.5s ease-in-out infinite;

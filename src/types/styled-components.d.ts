@@ -20,7 +20,6 @@ declare module 'styled-components' {
       background: {
         default: string;
         paper: string;
-        grey: string;
         transparent: string;
       };
       text: {

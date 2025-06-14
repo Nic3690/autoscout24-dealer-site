@@ -86,7 +86,7 @@ const AppContent: React.FC = () => {
           <Route path="/auto/:id" element={<CarDetailPage />} />
           {/* Reindirizza luxury al catalogo con filtro luxury */}
           <Route path="/luxury" element={<LuxuryRedirect />} />
-          <Route path="/sedi" element={<SediPage />} />
+          <Route path="/sedi" element={<Navigate to="/#sedi" replace />} />
           <Route path="/acquistiamo" element={<AcquistiPage />} />
           <Route path="/contatti" element={<ContactPage />} />
           <Route path="*" element={<div style={{ padding: '2rem', textAlign: 'center' }}>Pagina non trovata</div>} />

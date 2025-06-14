@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../layout/Container';
 import Card from '../common/Card';
-import Button from '../common/Button';
 import ActionButton from '../common/ActionButton';
 
 const ServicesSection = styled.section`
@@ -112,7 +111,7 @@ const LocationsSection: React.FC = () => {
   ];
 
   return (
-    <ServicesSection>
+    <ServicesSection id="sedi">
       <Container>
         <SectionTitle>DOVE SIAMO</SectionTitle>
         <ServicesGrid>

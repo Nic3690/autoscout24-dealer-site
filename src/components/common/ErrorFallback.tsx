@@ -57,7 +57,7 @@ const ErrorDetails = styled.details`
 `;
 
 const ErrorCode = styled.pre`
-  background-color: ${({ theme }) => theme.colors.background.grey};
+  background-color: ${({ theme }) => theme.colors.background.default};
   padding: ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   overflow-x: auto;
