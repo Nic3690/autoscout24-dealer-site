@@ -12,7 +12,7 @@ import type { CarFilters, FuelType, TransmissionType, BodyType } from '../types/
 
 const CatalogHeader = styled.div`
   background: transparent;
-  padding: ${({ theme }) => theme.spacing.xxl} 0 ${({ theme }) => theme.spacing.xl} 0;
+  padding: ${({ theme }) => theme.spacing.xxl} 0 ${({ theme }) => theme.spacing.xxl} 0;
 `;
 
 const SearchTitle = styled.h2`
@@ -53,7 +53,7 @@ const FiltersSection = styled.div`
   background: white;
   padding: ${({ theme }) => theme.spacing.xl};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
-  box-shadow: ${({ theme }) => theme.shadows.md};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
   border: 1px solid #e0e0e0;
   position: sticky;
   top: ${({ theme }) => theme.spacing.md};
@@ -149,15 +149,22 @@ const FiltersActions = styled.div`
   }
 `;
 
+const FullWidthActionButton = styled(ActionButton)`
+  width: 100%;
+`;
+
 const ResultsSection = styled.div`
 `;
 
 const CarsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: ${({ theme }) => theme.spacing.md};
   padding: 0;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     grid-template-columns: 1fr;
@@ -336,6 +343,11 @@ const PaginationContainer = styled.div`
 
 const PaginationButton = styled(Button)`
   min-width: 120px;
+  border: none;
+  color: ${({theme}) => theme.colors.secondary.main};
+  text-decoration: underline;
+  text-transform: none;
+  margin-top: -4px;
 `;
 
 const CatalogPage: React.FC = () => {
@@ -611,9 +623,9 @@ const CatalogPage: React.FC = () => {
             </FiltersGrid>
 
             <FiltersActions>
-              <ActionButton onClick={handleApplyFilters} variant="primary">
-                <FaSearch /> Applica Filtri
-              </ActionButton>
+              <FullWidthActionButton onClick={handleApplyFilters} variant="primary">
+                Applica Filtri
+              </FullWidthActionButton>
             </FiltersActions>
           </FiltersSection>
 
