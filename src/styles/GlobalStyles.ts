@@ -71,12 +71,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.primary.main};
+    color: white;
     text-decoration: none;
     transition: color 0.2s ease;
 
     &:hover {
-      color: ${({ theme }) => theme.colors.primary.main};
+      color: white;
       text-decoration: underline;
     }
   }
@@ -118,7 +118,7 @@ export const GlobalStyles = createGlobalStyle`
   /* Selection styles */
   ::selection {
     background-color: ${({ theme }) => theme.colors.primary.main};
-    color: ${({ theme }) => theme.colors.primary.contrastText};
+    color: white;
   }
 
   /* Loading animation keyframes */

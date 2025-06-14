@@ -149,7 +149,7 @@ const NavLink = styled(Link)<{ isActive: boolean; showHero: boolean }>`
 
   &:hover {
     opacity: 1;
-    color: ${({ theme }) => theme.colors.primary.main};
+    color: #D9D9D9;
     text-decoration: none;
   }
 
@@ -243,7 +243,7 @@ const LuxuryButton = styled(Button)`
   
   &:hover {
     background: transparent;
-    color: ${({ theme }) => theme.colors.primary.main};
+    color: #D9D9D9;
   }
 
   svg {
@@ -358,6 +358,9 @@ const DiscoverButton = styled(Button)`
   
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary.main};
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.primary.main}40;
   }
 
   svg {

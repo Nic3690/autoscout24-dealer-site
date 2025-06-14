@@ -22,14 +22,38 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
     case 'primary':
       return `
         background: ${theme.colors.primary.main};
-        color: ${theme.colors.primary.contrastText};
+        color: white;
         border: none;
+        text-decoration: none;
         
         &:hover:not(:disabled) {
           background: ${theme.colors.primary.main};
+          color: white;
+          text-decoration: none;
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
+        }
+
+        &:focus:not(:disabled), &:active:not(:disabled) {
+          background: ${theme.colors.primary.main};
           color: white;
+          text-decoration: none;
+        }
+
+        &:visited {
+          color: white;
+          text-decoration: none;
+        }
+
+        /* Override specifico per quando viene usato come Link */
+        &&&& {
+          color: white !important;
+          text-decoration: none !important;
+        }
+
+        &&&&:hover, &&&&:focus, &&&&:active, &&&&:visited {
+          color: white !important;
+          text-decoration: none !important;
         }
       `;
     case 'outline':
@@ -40,7 +64,7 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
         
         &:hover:not(:disabled) {
           background: ${theme.colors.primary.main};
-          color: ${theme.colors.primary.contrastText};
+          color: white;
         }
       `;
     case 'ghost':
@@ -51,6 +75,7 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
         
         &:hover:not(:disabled) {
           background: ${theme.colors.primary.main}10;
+          color: ${theme.colors.primary.main};
         }
       `;
     case 'danger':
@@ -61,6 +86,7 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
         
         &:hover:not(:disabled) {
           background: ${theme.colors.error}DD;
+          color: white;
           transform: translateY(-1px);
         }
       `;
@@ -69,12 +95,36 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
         background: ${theme.colors.primary.main};
         color: white;
         border: none;
+        text-decoration: none;
         
         &:hover:not(:disabled) {
           background: ${theme.colors.primary.main};
+          color: white;
+          text-decoration: none;
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
+        }
+
+        &:focus:not(:disabled), &:active:not(:disabled) {
+          background: ${theme.colors.primary.main};
           color: white;
+          text-decoration: none;
+        }
+
+        &:visited {
+          color: white;
+          text-decoration: none;
+        }
+
+        /* Override specifico per quando viene usato come Link */
+        &&&& {
+          color: white !important;
+          text-decoration: none !important;
+        }
+
+        &&&&:hover, &&&&:focus, &&&&:active, &&&&:visited {
+          color: white !important;
+          text-decoration: none !important;
         }
       `;
   }
@@ -122,6 +172,7 @@ const StyledButton = styled.button<ButtonProps>`
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+  color: white;
 
   &:disabled {
     opacity: 0.6;
