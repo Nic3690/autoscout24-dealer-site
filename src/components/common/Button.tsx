@@ -12,9 +12,9 @@ export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   className?: string;
   style?: React.CSSProperties;
-  as?: any; // Permette di usare come Link o altri componenti
-  to?: string; // Per react-router Link
-  href?: string; // Per link esterni
+  as?: any;
+  to?: string;
+  href?: string;
 }
 
 const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
@@ -29,6 +29,7 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
           background: ${theme.colors.primary.main};
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
+          color: white;
         }
       `;
     case 'outline':
@@ -66,13 +67,14 @@ const getButtonStyles = (variant: ButtonProps['variant'], theme: any) => {
     default:
       return `
         background: ${theme.colors.primary.main};
-        color: ${theme.colors.primary.contrastText};
+        color: white;
         border: none;
         
         &:hover:not(:disabled) {
           background: ${theme.colors.primary.main};
           transform: translateY(-1px);
           box-shadow: ${theme.shadows.md};
+          color: white;
         }
       `;
   }
